@@ -45,9 +45,9 @@ export default function Hero() {
           {/* Right — photo */}
           <div className="flex justify-center lg:justify-end">
             <div className="relative">
-              <div className="w-full max-w-md aspect-[3/4] border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden relative shadow-2xl shadow-[#3B82F6]/20">
+              <div className="w-full max-w-md aspect-[3/4] border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden shadow-2xl shadow-[#3B82F6]/20" style={{ position: "relative" }}>
                 <Image src="/portafolio1.jpg" alt="Juan Manuel Ordoñez Armero" fill
-                  className="object-cover object-top" priority />
+                  style={{ objectFit: "cover", objectPosition: "center top" }} priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60" />
               </div>
               <div className="absolute -bottom-6 -right-6 w-24 h-24 border-4 border-[#3B82F6]/30 rounded-lg -z-10" />

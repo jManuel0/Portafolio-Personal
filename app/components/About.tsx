@@ -25,9 +25,9 @@ export default function About() {
           {/* Photo */}
           <div className="flex items-center justify-center lg:justify-start">
             <div className="relative">
-              <div className="w-full max-w-md aspect-square border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden relative group shadow-2xl shadow-[#3B82F6]/20">
+              <div className="w-full max-w-md aspect-square border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden group shadow-2xl shadow-[#3B82F6]/20" style={{ position: "relative" }}>
                 <Image src="/portafolio2.jpg" alt="Sobre mí" fill
-                  className="object-cover object-top" />
+                  style={{ objectFit: "cover", objectPosition: "center top" }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-40" />
               </div>
               <div className="absolute -top-6 -left-6 w-24 h-24 border-4 border-[#3B82F6]/30 rounded-lg -z-10" />
