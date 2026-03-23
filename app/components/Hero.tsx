@@ -99,14 +99,31 @@ export default function Hero() {
         </div>
       </div>
 
-      {/* Scroll hint */}
-      <div style={{ position: "absolute", bottom: 32, left: "50%", transform: "translateX(-50%)", color: "var(--text-muted)", fontSize: 11, letterSpacing: "0.15em", textTransform: "uppercase" }}>
-        Scroll
+      {/* Scroll indicator */}
+      <div style={{
+        position: "absolute", bottom: 40, left: "50%", transform: "translateX(-50%)",
+        display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
+      }}>
+        <span style={{ color: "var(--text-muted)", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase" }}>
+          Scroll
+        </span>
+        <div style={{ width: 1, height: 60, background: "var(--border)", position: "relative", overflow: "hidden" }}>
+          <div style={{
+            position: "absolute", top: 0, left: 0, width: "100%",
+            background: "linear-gradient(to bottom, var(--accent), transparent)",
+            animation: "scrollLine 1.8s ease-in-out infinite",
+          }} />
+        </div>
       </div>
 
       <style>{`
         @media (max-width: 768px) {
           .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+        }
+        @keyframes scrollLine {
+          0%   { height: 0%; top: 0%; opacity: 1; }
+          50%  { height: 100%; top: 0%; opacity: 1; }
+          100% { height: 0%; top: 100%; opacity: 0; }
         }
       `}</style>
     </section>

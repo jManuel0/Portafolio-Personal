@@ -10,11 +10,13 @@ import Contact from "./components/Contact";
 import Footer from "./components/Footer";
 import ScrollTop from "./components/ScrollTop";
 import ScrollProgress from "./components/ScrollProgress";
+import SocialSidebar from "./components/SocialSidebar";
 
 export default function Home() {
   return (
     <>
       <ScrollProgress />
+      <SocialSidebar />
       <Navbar />
       <Hero />
       <Services />
