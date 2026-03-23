@@ -1,3 +1,4 @@
+"use client";
 import { Github, ExternalLink, Code2 } from "lucide-react";
 
 const projects = [

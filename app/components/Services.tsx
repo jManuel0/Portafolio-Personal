@@ -1,3 +1,4 @@
+"use client";
 import { Pencil, Code2, Monitor, Users, Headphones, Flag } from "lucide-react";
 
 const services = [

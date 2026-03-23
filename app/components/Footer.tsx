@@ -1,3 +1,4 @@
+"use client";
 import { Mail, Phone, MapPin, Github, Linkedin, Instagram } from "lucide-react";
 
 const quickLinks = ["Inicio", "Sobre Mí", "Proyectos", "Experiencia", "Contacto"];

@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 import { BookOpen, GraduationCap, Code2, Monitor, Database } from "lucide-react";
 import { Download } from "lucide-react";

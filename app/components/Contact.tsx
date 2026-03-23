@@ -1,3 +1,4 @@
+"use client";
 import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Send, ArrowRight } from "lucide-react";
 
 const info = [
