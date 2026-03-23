@@ -78,7 +78,7 @@ export default function Hero() {
             background: "var(--bg-card)", position: "relative",
           }}>
             <Image
-              src="/photo1.jpg"
+              src="/portafolio1.jpg"
               alt="Juan Manuel Ordoñez Armero"
               fill
               style={{ objectFit: "cover", objectPosition: "center top" }}

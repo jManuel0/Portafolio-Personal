@@ -26,7 +26,7 @@ export default function About() {
             background: "var(--bg-card)", position: "relative",
           }}>
             <Image
-              src="/photo2.jpg"
+              src="/portafolio2.jpg"
               alt="Juan Manuel Ordoñez Armero"
               fill
               style={{ objectFit: "cover", objectPosition: "center top" }}
