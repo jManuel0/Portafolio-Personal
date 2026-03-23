@@ -22,15 +22,15 @@ export default function About() {
         {/* Photo */}
         <div style={{ display: "flex", justifyContent: "center" }}>
           <div style={{
-            width: 300, height: 340, borderRadius: 16,
+            width: 320, height: 420, borderRadius: 16,
             border: "2px solid var(--accent)", overflow: "hidden",
-            background: "var(--bg-card)", position: "relative",
+            background: "var(--bg-card)", position: "relative", flexShrink: 0,
           }}>
             <Image
               src="/portafolio2.jpg"
               alt="Juan Manuel Ordoñez Armero"
               fill
-              style={{ objectFit: "cover", objectPosition: "center top" }}
+              style={{ objectFit: "cover", objectPosition: "center 15%" }}
             />
           </div>
         </div>

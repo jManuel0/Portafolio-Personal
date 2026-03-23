@@ -74,15 +74,15 @@ export default function Hero() {
         {/* Right — photo */}
         <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
           <div style={{
-            width: 280, height: 320, borderRadius: 16,
+            width: 300, height: 400, borderRadius: 16,
             border: "2px solid var(--accent)", overflow: "hidden",
-            background: "var(--bg-card)", position: "relative",
+            background: "var(--bg-card)", position: "relative", flexShrink: 0,
           }}>
             <Image
               src="/portafolio1.jpg"
               alt="Juan Manuel Ordoñez Armero"
               fill
-              style={{ objectFit: "cover", objectPosition: "center top" }}
+              style={{ objectFit: "cover", objectPosition: "center 20%" }}
               priority
             />
           </div>
