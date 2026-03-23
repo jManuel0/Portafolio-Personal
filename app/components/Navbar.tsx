@@ -45,6 +45,7 @@ export default function Navbar() {
       backdropFilter: "blur(14px)",
       borderBottom: `1px solid ${scrolled ? "var(--border)" : "transparent"}`,
       transition: "background-color 0.3s ease, border-color 0.3s ease",
+      overflow: "hidden",
     }}>
       <div style={{
         maxWidth: 1200, margin: "0 auto", padding: "0 24px",
@@ -60,7 +61,7 @@ export default function Navbar() {
         </div>
 
         {/* Desktop links + sliding indicator */}
-        <div style={{ position: "relative", display: "flex", gap: 8, alignItems: "center" }} className="hidden-mobile">
+        <div style={{ position: "relative", display: "flex", gap: 8, alignItems: "center", height: 64 }} className="hidden-mobile">
           {links.map((l, i) => (
             <a
               key={l}
@@ -71,7 +72,7 @@ export default function Navbar() {
                 color: active === i ? "#fff" : "var(--text-secondary)",
                 fontSize: 14, fontWeight: active === i ? 600 : 500,
                 textDecoration: "none", transition: "color 0.2s",
-                position: "relative", zIndex: 1,
+                position: "relative", zIndex: 1, display: "flex", alignItems: "center",
               }}
               onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
               onMouseLeave={e => (e.currentTarget.style.color = active === i ? "#fff" : "var(--text-secondary)")}
@@ -80,16 +81,17 @@ export default function Navbar() {
             </a>
           ))}
 
-          {/* Sliding underline */}
+          {/* Sliding underline — sits at the very bottom of the nav bar */}
           <div style={{
             position: "absolute",
-            bottom: -2,
+            bottom: 0,
             left: indicatorStyle.left,
             width: indicatorStyle.width,
             height: 2,
             background: "var(--accent)",
-            borderRadius: 2,
-            transition: "left 0.3s cubic-bezier(0.4,0,0.2,1), width 0.3s cubic-bezier(0.4,0,0.2,1)",
+            borderRadius: "2px 2px 0 0",
+            transition: "left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1)",
+            pointerEvents: "none",
           }} />
 
           <a href="#contacto" style={{
