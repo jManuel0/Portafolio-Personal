@@ -35,7 +35,7 @@ const services = [
 
 export default function Services() {
   return (
-    <section id="skills" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="skills" className="px-4 sm:px-8 py-24 sm:py-32 bg-[#0F172A] text-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
         <SectionHeader subtitle="Mis Servicios" title="Que puedo hacer"
           description="Tecnologías y herramientas que he aprendido y utilizado en mis proyectos académicos y personales." />

@@ -35,7 +35,7 @@ const projects = [
 
 export default function Projects() {
   return (
-    <section id="projects" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="projects" className="px-4 sm:px-8 py-24 sm:py-32 bg-[#0F172A] text-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
         <SectionHeader subtitle="Portafolio" title="Proyectos Destacados"
           description="Colección de proyectos académicos y personales que demuestran mis habilidades en desarrollo de software." />

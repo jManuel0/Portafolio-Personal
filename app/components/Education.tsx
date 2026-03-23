@@ -14,7 +14,7 @@ const education = [
 
 export default function Education() {
   return (
-    <section id="education" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="education" className="px-4 sm:px-8 py-24 sm:py-32 bg-[#0F172A] text-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
         <SectionHeader subtitle="Educación" title="Formación Académica"
           description="Mi trayectoria educativa que valida mis conocimientos técnicos." />

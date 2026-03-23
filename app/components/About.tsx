@@ -18,20 +18,21 @@ const stats = [
 
 export default function About() {
   return (
-    <section id="about" className="min-h-screen flex items-center px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="about" className="min-h-screen flex items-center px-4 sm:px-8 py-24 sm:py-32 bg-[#0F172A] text-[#F8FAFC]">
       <div className="max-w-7xl mx-auto w-full">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16">
 
           {/* Photo */}
           <div className="flex items-center justify-center lg:justify-start">
             <div className="relative">
-              <div className="border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden group shadow-2xl shadow-[#3B82F6]/20" style={{ position: "relative", width: 400, height: 400 }}>
+              <div className="border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden group shadow-2xl shadow-[#3B82F6]/20"
+                style={{ position: "relative", width: "min(340px, 80vw)", height: "min(340px, 80vw)" }}>
                 <Image src="/portafolio2.jpg" alt="Sobre mí" fill
                   style={{ objectFit: "cover", objectPosition: "center top" }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-40" />
               </div>
-              <div className="absolute -top-6 -left-6 w-24 h-24 border-4 border-[#3B82F6]/30 rounded-lg -z-10" />
-              <div className="absolute -bottom-6 -right-6 w-16 h-16 bg-[#3B82F6]/10 rounded-lg -z-10" />
+              <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-16 sm:w-24 h-16 sm:h-24 border-4 border-[#3B82F6]/30 rounded-lg -z-10" />
+              <div className="absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-12 sm:w-16 h-12 sm:h-16 bg-[#3B82F6]/10 rounded-lg -z-10" />
             </div>
           </div>
 

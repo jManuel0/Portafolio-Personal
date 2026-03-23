@@ -39,7 +39,7 @@ const experiences = [
 
 export default function Experience() {
   return (
-    <section id="experience" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="experience" className="px-4 sm:px-8 py-24 sm:py-32 bg-[#0F172A] text-[#F8FAFC]">
       <div className="max-w-5xl mx-auto">
         <SectionHeader subtitle="Trayectoria" title="Educación"
           description="Mi camino de aprendizaje y crecimiento en el desarrollo de software." />

@@ -25,13 +25,13 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="contact" className="px-4 sm:px-8 py-24 sm:py-32 bg-[#0F172A] text-[#F8FAFC]">
       <div className="max-w-7xl mx-auto">
         <SectionHeader subtitle="Contacto" title="Trabajemos Juntos"
           description="¿Tienes un proyecto en mente? Contáctame y conversemos sobre cómo puedo ayudarte." align="center" />
 
         {/* Info cards */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
           {[
             { icon: <Mail size={28} className="text-[#3B82F6]" />, label: "Email", value: "juanmaarmero30@gmail.com", href: "mailto:juanmaarmero30@gmail.com" },
             { icon: <Phone size={28} className="text-[#3B82F6]" />, label: "Teléfono", value: "+57 317 314 5521", href: "tel:+573173145521" },

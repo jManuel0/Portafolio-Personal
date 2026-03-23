@@ -45,7 +45,7 @@ export default function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0F172A]/95 backdrop-blur-sm border-b border-[#3B82F6]/20">
       {/* Scroll progress bar */}
       <ScrollBar />
-      <div className="px-8 py-6">
+      <div className="px-4 sm:px-8 py-4 sm:py-6">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           {/* Logo */}
           <a href="#home" onClick={(e) => handleLinkClick(e, "#home")}
