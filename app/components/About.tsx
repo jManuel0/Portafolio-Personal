@@ -2,6 +2,7 @@
 import Image from "next/image";
 import { BookOpen, GraduationCap, Code2, Monitor, Database } from "lucide-react";
 import { Download } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
 
 const stats = [
   { icon: <BookOpen size={18} />, value: "2+", label: "Años de Estudio" },
@@ -20,23 +21,25 @@ export default function About() {
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="about-grid">
 
         {/* Photo */}
-        <div style={{ display: "flex", justifyContent: "center" }} className="animate-slide-in-left">
-          <div style={{
-            width: 320, height: 420, borderRadius: 16,
-            border: "2px solid var(--accent)", overflow: "hidden",
-            background: "var(--bg-card)", position: "relative", flexShrink: 0,
-          }}>
-            <Image
-              src="/portafolio2.jpg"
-              alt="Juan Manuel Ordoñez Armero"
-              fill
-              style={{ objectFit: "cover", objectPosition: "center 15%" }}
-            />
+        <AnimatedSection delay={0}>
+          <div style={{ display: "flex", justifyContent: "center" }}>
+            <div style={{
+              width: 320, height: 420, borderRadius: 16,
+              border: "2px solid var(--accent)", overflow: "hidden",
+              background: "var(--bg-card)", position: "relative", flexShrink: 0,
+            }}>
+              <Image
+                src="/portafolio2.jpg"
+                alt="Juan Manuel Ordoñez Armero"
+                fill
+                style={{ objectFit: "cover", objectPosition: "center 15%" }}
+              />
+            </div>
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* Content */}
-        <div className="animate-slide-in-right">
+        <AnimatedSection delay={200}>
           <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
             <span>•</span> Sobre Mí
           </p>
@@ -85,7 +88,7 @@ export default function About() {
             onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}>
             <Download size={16} /> Descargar CV
           </a>
-        </div>
+        </AnimatedSection>
       </div>
 
       <style>{`

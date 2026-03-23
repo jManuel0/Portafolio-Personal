@@ -1,5 +1,6 @@
 "use client";
 import { Github, ExternalLink, Code2 } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
 
 const projects = [
   {
@@ -56,7 +57,8 @@ export default function Projects() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="projects-grid">
           {projects.map((p, i) => (
-            <div key={p.title} className={`animate-fade-in-up delay-${(i + 1) * 100}`} style={{
+            <AnimatedSection key={p.title} delay={i * 100}>
+            <div style={{
               background: "var(--bg-card)", border: "1px solid var(--border)",
               borderRadius: 12, padding: 24, display: "flex", flexDirection: "column", gap: 16,
               transition: "border-color 0.2s, transform 0.2s",
@@ -103,6 +105,7 @@ export default function Projects() {
                 </a>
               </div>
             </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

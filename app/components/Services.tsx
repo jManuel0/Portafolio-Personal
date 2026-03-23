@@ -1,5 +1,6 @@
 "use client";
 import { Pencil, Code2, Monitor, Users, Headphones, Flag } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
 
 const services = [
   {
@@ -50,7 +51,8 @@ export default function Services() {
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="services-grid">
           {services.map((s, i) => (
-            <div key={s.title} className={`animate-fade-in-up delay-${(i + 1) * 100}`} style={{
+            <AnimatedSection key={s.title} delay={i * 100}>
+            <div style={{
               background: "var(--bg-card)", border: "1px solid var(--border)",
               borderRadius: 12, padding: 28, transition: "border-color 0.2s, transform 0.2s", cursor: "default",
             }}
@@ -60,6 +62,7 @@ export default function Services() {
               <h3 style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 10 }}>{s.title}</h3>
               <p style={{ color: "var(--text-secondary)", fontSize: 13, lineHeight: 1.7 }}>{s.desc}</p>
             </div>
+            </AnimatedSection>
           ))}
         </div>
       </div>

@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import { Mail, Download, Github, Linkedin, Instagram } from "lucide-react";
+import { AnimatedSection } from "./AnimatedSection";
 
 const stats = [
   { value: "2+", label: "Años Estudiando" },
@@ -20,7 +21,7 @@ export default function Hero() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="hero-grid">
 
         {/* Left */}
-        <div className="animate-slide-in-left">
+        <AnimatedSection delay={0}>
           <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ color: "var(--accent)" }}>▶</span> Estudiante de Ingeniería de Software
           </p>
@@ -69,10 +70,11 @@ export default function Hero() {
               </a>
             ))}
           </div>
-        </div>
+        </AnimatedSection>
 
         {/* Right — photo */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }} className="animate-slide-in-right">
+        <AnimatedSection delay={200}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
           <div style={{
             width: 300, height: 400, borderRadius: 16,
             border: "2px solid var(--accent)", overflow: "hidden",
@@ -97,6 +99,7 @@ export default function Hero() {
             ))}
           </div>
         </div>
+        </AnimatedSection>
       </div>
 
       {/* Scroll indicator */}
