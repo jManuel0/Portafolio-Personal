@@ -1,106 +1,110 @@
 "use client";
-import { Mail, Phone, MapPin, Github, Linkedin, Instagram, Send, ArrowRight } from "lucide-react";
-
-const info = [
-  { icon: <Mail size={22} />, label: "Email", value: "juanmaarmero30@gmail.com", href: "mailto:juanmaarmero30@gmail.com" },
-  { icon: <Phone size={22} />, label: "Teléfono", value: "+57 317 314 5521", href: "tel:+573173145521" },
-  { icon: <MapPin size={22} />, label: "Ubicación", value: "Pasto Nariño, Colombia", href: "#" },
-];
-
-const socials = [
-  { icon: <Github size={18} />, label: "GitHub", handle: "@jManuel0", href: "https://github.com/jManuel0" },
-  { icon: <Linkedin size={18} />, label: "LinkedIn", handle: "@Juan Manuel Ordoñez Armero", href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337" },
-  { icon: <Instagram size={18} />, label: "Instagram", handle: "@ordonezarmero_juan", href: "#" },
-];
+import { useState } from "react";
+import { Github, Linkedin, Instagram, Send, Mail, Phone, MapPin } from "lucide-react";
+import { SectionHeader } from "./ui/SectionHeader";
+import { Button } from "./ui/Button";
 
 export default function Contact() {
+  const [formData, setFormData] = useState({ firstName: "", lastName: "", email: "", subject: "", message: "" });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<"idle" | "success">("idle");
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    setTimeout(() => {
+      setSubmitStatus("success");
+      setIsSubmitting(false);
+      setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
+      setTimeout(() => setSubmitStatus("idle"), 3000);
+    }, 1500);
+  };
+
   return (
-    <section id="contacto" style={{ padding: "96px 24px", background: "var(--bg-primary)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-          <span>•</span> Contacto
-        </p>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }}>
-          Trabajemos Juntos
-        </h2>
-        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 48, maxWidth: 520 }}>
-          ¿Tienes un proyecto en mente? Contáctame y conversemos sobre cómo puedo ayudarte.
-        </p>
+    <section id="contact" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+      <div className="max-w-7xl mx-auto">
+        <SectionHeader subtitle="Contacto" title="Trabajemos Juntos"
+          description="¿Tienes un proyecto en mente? Contáctame y conversemos sobre cómo puedo ayudarte." align="center" />
 
         {/* Info cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 40 }} className="contact-info-grid">
-          {info.map((item) => (
-            <a key={item.label} href={item.href} style={{
-              background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: 12,
-              padding: 24, textDecoration: "none", display: "flex", flexDirection: "column", alignItems: "center",
-              gap: 12, transition: "border-color 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--accent)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}>
-              <div style={{ width: 48, height: 48, borderRadius: "50%", background: "rgba(59,130,246,0.1)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent)" }}>
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-16">
+          {[
+            { icon: <Mail size={28} className="text-[#3B82F6]" />, label: "Email", value: "juanmaarmero30@gmail.com", href: "mailto:juanmaarmero30@gmail.com" },
+            { icon: <Phone size={28} className="text-[#3B82F6]" />, label: "Teléfono", value: "+57 317 314 5521", href: "tel:+573173145521" },
+            { icon: <MapPin size={28} className="text-[#3B82F6]" />, label: "Ubicación", value: "Pasto Nariño, Colombia", href: "#" },
+          ].map((item) => (
+            <a key={item.label} href={item.href}
+              className="bg-[#1E293B] border border-[#3B82F6]/20 rounded-lg p-8 hover:bg-[#334155] hover:border-[#3B82F6] hover:shadow-lg hover:shadow-[#3B82F6]/20 transition-all text-center no-underline">
+              <div className="w-16 h-16 bg-[#3B82F6]/20 rounded-full flex items-center justify-center mx-auto mb-6 border border-[#3B82F6]/30">
                 {item.icon}
               </div>
-              <p style={{ fontSize: 14, fontWeight: 600, color: "#fff" }}>{item.label}</p>
-              <p style={{ fontSize: 13, color: "var(--text-secondary)", textAlign: "center" }}>{item.value}</p>
+              <h3 className="font-bold mb-2 text-[#F8FAFC]">{item.label}</h3>
+              <p className="text-sm text-[#94A3B8] hover:text-[#3B82F6] transition-colors">{item.value}</p>
             </a>
           ))}
         </div>
 
-        {/* Form + Socials */}
-        <div style={{ display: "grid", gridTemplateColumns: "1fr 380px", gap: 24 }} className="contact-bottom-grid">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Form */}
-          <div style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: 16, padding: 32 }}>
-            <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 24 }}>Enviar Mensaje</h3>
-            <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-              <input placeholder="Nombre" style={{ padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none" }} />
-              <input placeholder="Apellido" style={{ padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none" }} />
-            </div>
-            <input placeholder="Email" style={{ width: "100%", padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none", marginBottom: 16, boxSizing: "border-box" }} />
-            <input placeholder="Asunto" style={{ width: "100%", padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none", marginBottom: 16, boxSizing: "border-box" }} />
-            <textarea placeholder="Tu Mensaje" rows={4} style={{ width: "100%", padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none", resize: "vertical", marginBottom: 20, boxSizing: "border-box" }} />
-            <button style={{
-              padding: "12px 28px", background: "var(--accent)", color: "#fff", border: "none",
-              borderRadius: 8, fontWeight: 600, fontSize: 14, cursor: "pointer",
-              display: "flex", alignItems: "center", gap: 8, transition: "background 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.background = "var(--accent-hover)")}
-              onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}>
-              <Send size={16} /> Enviar Mensaje
-            </button>
+          <div className="lg:col-span-2 bg-[#1E293B] border border-[#3B82F6]/20 rounded-lg p-8 lg:p-12">
+            <h3 className="text-2xl font-bold mb-8 text-[#F8FAFC]">Enviar Mensaje</h3>
+            {submitStatus === "success" && (
+              <div className="mb-6 p-4 bg-[#3B82F6]/20 border border-[#3B82F6] rounded-lg text-[#F8FAFC]">
+                ✓ ¡Mensaje enviado exitosamente! Te responderé pronto.
+              </div>
+            )}
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <input type="text" name="firstName" value={formData.firstName} onChange={handleChange}
+                  placeholder="Nombre" required className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-6 py-4 outline-none focus:border-[#3B82F6] transition-colors placeholder:text-[#94A3B8] text-[#F8FAFC]" />
+                <input type="text" name="lastName" value={formData.lastName} onChange={handleChange}
+                  placeholder="Apellido" required className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-6 py-4 outline-none focus:border-[#3B82F6] transition-colors placeholder:text-[#94A3B8] text-[#F8FAFC]" />
+              </div>
+              <input type="email" name="email" value={formData.email} onChange={handleChange}
+                placeholder="Email" required className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-6 py-4 outline-none focus:border-[#3B82F6] transition-colors placeholder:text-[#94A3B8] text-[#F8FAFC]" />
+              <input type="text" name="subject" value={formData.subject} onChange={handleChange}
+                placeholder="Asunto" required className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-6 py-4 outline-none focus:border-[#3B82F6] transition-colors placeholder:text-[#94A3B8] text-[#F8FAFC]" />
+              <textarea name="message" value={formData.message} onChange={handleChange}
+                placeholder="Tu Mensaje" rows={6} required className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-6 py-4 outline-none resize-none focus:border-[#3B82F6] transition-colors placeholder:text-[#94A3B8] text-[#F8FAFC]" />
+              <Button variant="primary" size="md" type="submit" disabled={isSubmitting}>
+                <Send size={20} className="mr-2" />
+                {isSubmitting ? "Enviando..." : "Enviar Mensaje"}
+              </Button>
+            </form>
           </div>
 
           {/* Socials */}
-          <div style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: 16, padding: 32, display: "flex", flexDirection: "column", gap: 16 }}>
-            <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Conéctate Conmigo</h3>
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" style={{
-                display: "flex", alignItems: "center", gap: 12, padding: "12px 16px",
-                background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 10,
-                textDecoration: "none", transition: "border-color 0.2s",
-              }}
-                onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--accent)")}
-                onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}>
-                <div style={{ color: "var(--accent)" }}>{s.icon}</div>
-                <div style={{ flex: 1 }}>
-                  <p style={{ fontSize: 13, fontWeight: 600, color: "#fff" }}>{s.label}</p>
-                  <p style={{ fontSize: 11, color: "var(--text-secondary)" }}>{s.handle}</p>
-                </div>
-                <ArrowRight size={14} style={{ color: "var(--text-muted)" }} />
-              </a>
-            ))}
-            <p style={{ fontSize: 12, color: "var(--text-muted)", marginTop: "auto", paddingTop: 16, borderTop: "1px solid var(--border)" }}>
-              Siempre abierto a nuevas oportunidades y colaboraciones.
-            </p>
+          <div className="bg-[#1E293B] border border-[#3B82F6]/20 rounded-lg p-8 flex flex-col justify-between">
+            <div>
+              <h3 className="text-2xl font-bold mb-8 text-[#F8FAFC]">Conéctate Conmigo</h3>
+              <div className="space-y-6">
+                {[
+                  { href: "https://github.com/jManuel0", icon: <Github size={24} className="text-[#3B82F6]" />, label: "GitHub", handle: "@jManuel0" },
+                  { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={24} className="text-[#3B82F6]" />, label: "LinkedIn", handle: "@Juan Manuel Ordoñez Armero" },
+                  { href: "https://www.instagram.com/ordonezarmero_juan", icon: <Instagram size={24} className="text-[#3B82F6]" />, label: "Instagram", handle: "@ordonezarmero_juan" },
+                ].map((s) => (
+                  <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer"
+                    className="group flex items-center gap-4 p-4 bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg hover:bg-[#334155] hover:border-[#3B82F6] transition-all">
+                    {s.icon}
+                    <div className="flex-1">
+                      <p className="font-medium text-[#F8FAFC]">{s.label}</p>
+                      <p className="text-xs text-[#94A3B8]">{s.handle}</p>
+                    </div>
+                    <span className="group-hover:translate-x-1 transition-transform text-[#3B82F6]">→</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+            <div className="mt-8 pt-8 border-t border-[#3B82F6]/20">
+              <p className="text-sm text-[#94A3B8] leading-relaxed">Siempre abierto a nuevas oportunidades y colaboraciones.</p>
+            </div>
           </div>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 900px) {
-          .contact-info-grid { grid-template-columns: 1fr !important; }
-          .contact-bottom-grid { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </section>
   );
 }

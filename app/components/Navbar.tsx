@@ -1,145 +1,112 @@
 "use client";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
+import { Button } from "./ui/Button";
 import { Menu, X } from "lucide-react";
 
-const links = ["Inicio", "Sobre mí", "Proyectos", "Experiencia", "Contacto"];
-const sectionIds = ["inicio", "sobre-mi", "proyectos", "experiencia", "contacto"];
+const navLinks = [
+  { href: "#home", label: "Inicio" },
+  { href: "#about", label: "Sobre Mí" },
+  { href: "#projects", label: "Proyectos" },
+  { href: "#experience", label: "Experiencia" },
+  { href: "#contact", label: "Contacto" },
+];
 
 export default function Navbar() {
-  const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-  const [active, setActive] = useState(0);
-  const [indicatorStyle, setIndicatorStyle] = useState({ left: 0, width: 0 });
-  const linkRefs = useRef<(HTMLAnchorElement | null)[]>([]);
+  const [isOpen, setIsOpen] = useState(false);
+  const [activeSection, setActiveSection] = useState("home");
 
   useEffect(() => {
-    const onScroll = () => {
-      setScrolled(window.scrollY > 20);
-
-      let current = 0;
-      sectionIds.forEach((id, i) => {
-        const el = document.getElementById(id);
-        if (el && window.scrollY >= el.offsetTop - 100) current = i;
-      });
-      setActive(current);
+    const handleScroll = () => {
+      const sections = navLinks.map((l) => l.href.substring(1));
+      const scrollPosition = window.scrollY + 200;
+      for (const section of sections) {
+        const el = document.getElementById(section);
+        if (el) {
+          const top = el.offsetTop;
+          const bottom = top + el.offsetHeight;
+          if (scrollPosition >= top && scrollPosition < bottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
     };
-
-    window.addEventListener("scroll", onScroll, { passive: true });
-    onScroll();
-    return () => window.removeEventListener("scroll", onScroll);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  // Move the indicator under the active link
-  useEffect(() => {
-    const el = linkRefs.current[active];
-    if (el) {
-      const { offsetLeft, offsetWidth } = el;
-      setIndicatorStyle({ left: offsetLeft, width: offsetWidth });
-    }
-  }, [active]);
+  const handleLinkClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    e.preventDefault();
+    document.querySelector(href)?.scrollIntoView({ behavior: "smooth" });
+    setIsOpen(false);
+  };
 
   return (
-    <nav style={{
-      position: "fixed", top: 3, left: 0, right: 0, zIndex: 50,
-      backgroundColor: scrolled ? "rgba(10,15,30,0.97)" : "rgba(10,15,30,0.6)",
-      backdropFilter: "blur(14px)",
-      borderBottom: `1px solid ${scrolled ? "var(--border)" : "transparent"}`,
-      transition: "background-color 0.3s ease, border-color 0.3s ease",
-      overflow: "hidden",
-    }}>
-      <div style={{
-        maxWidth: 1200, margin: "0 auto", padding: "0 24px",
-        height: 64, display: "flex", alignItems: "center", justifyContent: "space-between",
-      }}>
-        {/* Logo */}
-        <div style={{
-          width: 40, height: 40, borderRadius: 8, background: "var(--accent)",
-          display: "flex", alignItems: "center", justifyContent: "center",
-          fontWeight: 700, fontSize: 13, color: "#fff", fontFamily: "monospace", flexShrink: 0,
-        }}>
-          {"</>"}
-        </div>
-
-        {/* Desktop links + sliding indicator */}
-        <div style={{ position: "relative", display: "flex", gap: 8, alignItems: "center", height: 64 }} className="hidden-mobile">
-          {links.map((l, i) => (
-            <a
-              key={l}
-              href={`#${sectionIds[i]}`}
-              ref={el => { linkRefs.current[i] = el; }}
-              style={{
-                padding: "8px 14px",
-                color: active === i ? "#fff" : "var(--text-secondary)",
-                fontSize: 14, fontWeight: active === i ? 600 : 500,
-                textDecoration: "none", transition: "color 0.2s",
-                position: "relative", zIndex: 1, display: "flex", alignItems: "center",
-              }}
-              onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-              onMouseLeave={e => (e.currentTarget.style.color = active === i ? "#fff" : "var(--text-secondary)")}
-            >
-              {l}
-            </a>
-          ))}
-
-          {/* Sliding underline — sits at the very bottom of the nav bar */}
-          <div style={{
-            position: "absolute",
-            bottom: 0,
-            left: indicatorStyle.left,
-            width: indicatorStyle.width,
-            height: 2,
-            background: "var(--accent)",
-            borderRadius: "2px 2px 0 0",
-            transition: "left 0.35s cubic-bezier(0.4,0,0.2,1), width 0.35s cubic-bezier(0.4,0,0.2,1)",
-            pointerEvents: "none",
-          }} />
-
-          <a href="#contacto" style={{
-            marginLeft: 16, padding: "8px 20px", borderRadius: 6,
-            background: "var(--accent)", color: "#fff",
-            fontSize: 14, fontWeight: 600, textDecoration: "none", transition: "background 0.2s",
-          }}
-            onMouseEnter={e => (e.currentTarget.style.background = "var(--accent-hover)")}
-            onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}>
-            Contrátame
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0F172A]/95 backdrop-blur-sm border-b border-[#3B82F6]/20">
+      {/* Scroll progress bar */}
+      <ScrollBar />
+      <div className="px-8 py-6">
+        <div className="max-w-7xl mx-auto flex justify-between items-center">
+          {/* Logo */}
+          <a href="#home" onClick={(e) => handleLinkClick(e, "#home")}
+            className="w-12 h-12 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center hover:bg-[#3B82F6] transition-all shadow-lg shadow-[#3B82F6]/20">
+            <span className="text-xl font-bold text-[#F8FAFC]">&lt;/&gt;</span>
           </a>
+
+          {/* Desktop links */}
+          <div className="hidden md:flex gap-12 text-sm uppercase tracking-widest">
+            {navLinks.map((link) => {
+              const isActive = activeSection === link.href.substring(1);
+              return (
+                <a key={link.href} href={link.href} onClick={(e) => handleLinkClick(e, link.href)}
+                  className={`relative group transition-colors ${isActive ? "text-[#3B82F6]" : "text-[#F8FAFC] hover:text-[#3B82F6]"}`}>
+                  {link.label}
+                  <span className={`absolute -bottom-1 left-0 h-px bg-[#3B82F6] transition-all duration-300 ${isActive ? "w-full" : "w-0 group-hover:w-full"}`} />
+                </a>
+              );
+            })}
+          </div>
+
+          <div className="hidden md:block">
+            <Button variant="primary" size="sm">Contrátame</Button>
+          </div>
+
+          <button onClick={() => setIsOpen(!isOpen)} className="md:hidden text-[#F8FAFC] hover:text-[#3B82F6] transition-colors">
+            {isOpen ? <X size={24} /> : <Menu size={24} />}
+          </button>
         </div>
 
-        {/* Mobile toggle */}
-        <button onClick={() => setOpen(!open)}
-          style={{ background: "none", border: "none", color: "#fff", cursor: "pointer", display: "none" }}
-          className="show-mobile">
-          {open ? <X size={22} /> : <Menu size={22} />}
-        </button>
+        {/* Mobile menu */}
+        {isOpen && (
+          <div className="md:hidden mt-6 pt-6 border-t border-[#3B82F6]/20 space-y-4">
+            {navLinks.map((link) => (
+              <a key={link.href} href={link.href} onClick={(e) => handleLinkClick(e, link.href)}
+                className={`block text-sm uppercase tracking-widest transition-colors ${activeSection === link.href.substring(1) ? "text-[#3B82F6] font-bold" : "text-[#F8FAFC] hover:text-[#3B82F6]"}`}>
+                {link.label}
+              </a>
+            ))}
+            <Button variant="primary" size="sm" className="w-full mt-4">Contrátame</Button>
+          </div>
+        )}
       </div>
-
-      {/* Mobile menu */}
-      {open && (
-        <div style={{
-          background: "rgba(10,15,30,0.98)", borderTop: "1px solid var(--border)",
-          padding: "16px 24px", display: "flex", flexDirection: "column", gap: 16,
-        }}>
-          {links.map((l, i) => (
-            <a key={l} href={`#${sectionIds[i]}`} onClick={() => setOpen(false)}
-              style={{ color: active === i ? "var(--accent)" : "var(--text-secondary)", fontSize: 15, textDecoration: "none", fontWeight: active === i ? 600 : 400 }}>
-              {l}
-            </a>
-          ))}
-          <a href="#contacto" onClick={() => setOpen(false)} style={{
-            padding: "10px 20px", borderRadius: 6, background: "var(--accent)",
-            color: "#fff", fontSize: 14, fontWeight: 600, textDecoration: "none", textAlign: "center",
-          }}>
-            Contrátame
-          </a>
-        </div>
-      )}
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hidden-mobile { display: none !important; }
-          .show-mobile { display: block !important; }
-        }
-      `}</style>
     </nav>
+  );
+}
+
+function ScrollBar() {
+  const [progress, setProgress] = useState(0);
+  useEffect(() => {
+    const onScroll = () => {
+      const total = document.documentElement.scrollHeight - window.innerHeight;
+      setProgress(total > 0 ? (window.scrollY / total) * 100 : 0);
+    };
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+  return (
+    <div className="absolute top-0 left-0 w-full h-[3px] bg-[#3B82F6]/10 z-10">
+      <div className="h-full bg-gradient-to-r from-[#3B82F6] to-[#1E3A8A] transition-all duration-200 shadow-lg shadow-[#3B82F6]/50"
+        style={{ width: `${progress}%` }} />
+    </div>
   );
 }

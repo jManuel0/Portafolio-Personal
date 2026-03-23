@@ -1,104 +1,73 @@
+import { SectionHeader } from "./ui/SectionHeader";
 import { GraduationCap } from "lucide-react";
 
-const timeline = [
+const experiences = [
   {
-    period: "2026 - Presente",
-    title: "Estudiante de Ingeniería de Software",
-    institution: "Universidad Cooperativa de Colombia Campus Pasto",
-    desc: "Actualmente cursando el quinto semestre con enfoque en desarrollo web full-stack y arquitectura de software.",
-    bullets: [
+    year: "2026 - Presente",
+    position: "Estudiante de Ingeniería de Software",
+    company: "Universidad Cooperativa De Colombia Campus Pasto",
+    description: "Actualmente cursando el quinto semestre con enfoque en desarrollo web full-stack y arquitectura de software.",
+    achievements: [
       "Promedio académico de 70% en materias de programación",
       "Participación en proyectos colaborativos de desarrollo",
       "Aprendizaje de tecnologías modernas como React y Node.js",
     ],
-    active: true,
   },
   {
-    period: "2025",
-    title: "Estudiante de Ingeniería de Software",
-    institution: "Universidad Cooperativa de Colombia Campus Pasto",
-    desc: "Cursando el tercer y cuarto semestre con enfoque en desarrollo web full-stack y arquitectura de software.",
-    bullets: [
+    year: "2025",
+    position: "Estudiante de Ingeniería de Software",
+    company: "Universidad Cooperativa De Colombia Campus Pasto",
+    description: "Cursando el tercer y cuarto semestre con enfoque en desarrollo web full-stack y arquitectura de software.",
+    achievements: [
       "Promedio académico de 70% en materias de programación",
       "Participación en proyectos colaborativos de desarrollo",
       "Aprendizaje de tecnologías modernas como React y Node.js",
     ],
-    active: false,
   },
   {
-    period: "2024",
-    title: "Estudiante de Ingeniería de Software",
-    institution: "Universidad Cooperativa de Colombia Campus Pasto",
-    desc: "Cursando el primer y segundo semestre con enfoque en fundamentos de programación y desarrollo web.",
-    bullets: [
+    year: "2024",
+    position: "Estudiante de Ingeniería de Software",
+    company: "Universidad Cooperativa De Colombia Campus Pasto",
+    description: "Cursando el primer y segundo semestre con enfoque en fundamentos de programación y desarrollo web.",
+    achievements: [
       "Promedio académico de 70% en materias de programación",
       "Participación en proyectos colaborativos de desarrollo",
       "Aprendizaje de tecnologías modernas como React y Node.js",
     ],
-    active: false,
   },
 ];
 
 export default function Experience() {
   return (
-    <section id="experiencia" style={{ padding: "96px 24px", background: "var(--bg-secondary)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-          <span>•</span> Trayectoria
-        </p>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }}>
-          Educación
-        </h2>
-        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 56 }}>
-          Mi camino de aprendizaje y crecimiento en el desarrollo de software.
-        </p>
-
-        {/* Timeline */}
-        <div style={{ position: "relative", paddingLeft: 32 }}>
-          {/* Vertical line */}
-          <div style={{ position: "absolute", left: 7, top: 0, bottom: 0, width: 2, background: "var(--border)" }} />
-
-          <div style={{ display: "flex", flexDirection: "column", gap: 40 }}>
-            {timeline.map((item, i) => (
-              <div key={i} style={{ position: "relative", display: "flex", gap: 32, alignItems: "flex-start" }}>
-                {/* Dot */}
-                <div style={{
-                  position: "absolute", left: -32, top: 6,
-                  width: 16, height: 16, borderRadius: "50%",
-                  background: item.active ? "var(--accent)" : "var(--bg-card)",
-                  border: "2px solid var(--accent)", flexShrink: 0,
-                }} />
-
-                {/* Period badge */}
-                <div style={{ flexShrink: 0, minWidth: 140 }}>
-                  <span style={{
-                    display: "inline-flex", alignItems: "center", gap: 6,
-                    padding: "4px 12px", borderRadius: 20,
-                    background: item.active ? "rgba(59,130,246,0.15)" : "var(--bg-card)",
-                    border: `1px solid ${item.active ? "var(--accent)" : "var(--border)"}`,
-                    color: item.active ? "var(--accent)" : "var(--text-secondary)",
-                    fontSize: 12, fontWeight: 600,
-                  }}>
-                    <GraduationCap size={12} /> {item.period}
-                  </span>
-                </div>
-
-                {/* Card */}
-                <div style={{
-                  flex: 1, background: item.active ? "var(--bg-card-hover)" : "var(--bg-card)",
-                  border: `1px solid ${item.active ? "var(--accent)" : "var(--border)"}`,
-                  borderRadius: 12, padding: 24,
-                }}>
-                  <h3 style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 4 }}>{item.title}</h3>
-                  <p style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", marginBottom: 12 }}>{item.institution}</p>
-                  <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: 12 }}>{item.desc}</p>
-                  <ul style={{ listStyle: "none", padding: 0, display: "flex", flexDirection: "column", gap: 6 }}>
-                    {item.bullets.map((b) => (
-                      <li key={b} style={{ fontSize: 13, color: "var(--text-secondary)", display: "flex", alignItems: "flex-start", gap: 8 }}>
-                        <span style={{ color: "var(--accent)", marginTop: 2, flexShrink: 0 }}>•</span> {b}
-                      </li>
-                    ))}
-                  </ul>
+    <section id="experience" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+      <div className="max-w-5xl mx-auto">
+        <SectionHeader subtitle="Trayectoria" title="Educación"
+          description="Mi camino de aprendizaje y crecimiento en el desarrollo de software." />
+        <div className="relative">
+          <div className="absolute left-0 top-0 bottom-0 w-px bg-[#3B82F6]/30 hidden md:block" />
+          <div className="space-y-12">
+            {experiences.map((exp, index) => (
+              <div key={index} className="relative pl-0 md:pl-12">
+                <div className="absolute left-0 top-2 w-3 h-3 bg-[#3B82F6] rounded-full -translate-x-[5px] hidden md:block shadow-lg shadow-[#3B82F6]/50" />
+                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                  <div className="md:col-span-1">
+                    <div className="inline-flex items-center gap-2 bg-[#1E293B] border border-[#3B82F6]/20 rounded-lg px-4 py-2">
+                      <GraduationCap size={16} className="text-[#3B82F6]" />
+                      <span className="text-sm font-medium text-[#F8FAFC]">{exp.year}</span>
+                    </div>
+                  </div>
+                  <div className="md:col-span-3 bg-[#1E293B] border border-[#3B82F6]/20 rounded-lg p-8 hover:bg-[#334155] hover:border-[#3B82F6] hover:shadow-lg hover:shadow-[#3B82F6]/20 transition-all">
+                    <h3 className="text-2xl font-bold mb-2 text-[#F8FAFC]">{exp.position}</h3>
+                    <p className="text-sm text-[#94A3B8] mb-4 uppercase tracking-wider">{exp.company}</p>
+                    <p className="text-sm text-[#94A3B8] leading-relaxed mb-6">{exp.description}</p>
+                    <ul className="space-y-2">
+                      {exp.achievements.map((a, i) => (
+                        <li key={i} className="text-sm text-[#94A3B8] flex items-start gap-3">
+                          <span className="text-[#3B82F6] mt-1">▸</span> {a}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </div>
             ))}

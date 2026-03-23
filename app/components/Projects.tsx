@@ -1,119 +1,77 @@
-"use client";
-import { Github, ExternalLink, Code2 } from "lucide-react";
-import { AnimatedSection } from "./AnimatedSection";
+import { SectionHeader } from "./ui/SectionHeader";
+import { Card } from "./ui/Card";
+import { ExternalLink, Github } from "lucide-react";
 
 const projects = [
   {
-    year: "2025",
-    type: "APLICACIÓN WEB",
-    title: "Sistema Inteligente de Optimización del Tráfico",
-    desc: "Sistema orientado a mejorar la movilidad urbana en Pasto mediante sensores y control automatizado de semáforos.",
-    tech: ["IoT", "ESP32", "Sensores", "Monitoreo"],
-    github: "https://github.com/jManuel0",
-    demo: "#",
+    id: 1, title: "RoadWarnings Nariño", category: "Aplicación Web",
+    description: "Plataforma para gestión de tráfico en Nariño.",
+    technologies: ["SpringBoot", "PostgreSQL", "Tailwind"], year: "2025",
+    github: "https://github.com/jManuel0/RoadWarningsNarino--Frontend.git",
+    demo: "https://road-warnings-narino-frontend.vercel.app",
   },
   {
-    year: "2026",
-    type: "WEB DEVELOPMENT",
-    title: "Portafolio Personal v2",
-    desc: "Diseño y desarrollo de un sitio web profesional con Next.js y Tailwind CSS, enfoque moderno y responsive.",
-    tech: ["Next.js", "Tailwind CSS", "TypeScript"],
-    github: "https://github.com/jManuel0/Portafolio-Personal",
-    demo: "#",
+    id: 2, title: "Demo Mercado Libre", category: "Proyecto en Clase",
+    description: "Demo de la landing page de Mercado Libre.",
+    technologies: ["CSS", "JavaScript", "HTML", "Tailwind"], year: "2026",
+    github: "https://github.com/CarlosTaquez/MercadoLibre-ladingPage.git",
+    demo: "https://mercado-libre-lading-page.vercel.app/",
   },
   {
-    year: "2025",
-    type: "PROYECTO ACADÉMICO",
-    title: "Dashboard Web Interactivo",
-    desc: "Interfaz interactiva para la visualización de datos con énfasis en claridad de información y experiencia de usuario.",
-    tech: ["React", "JavaScript", "CSS"],
-    github: "https://github.com/jManuel0",
-    demo: "#",
+    id: 3, title: "Aplicación de Voluntariado ONG", category: "Proyecto Clase",
+    description: "Sistema de gestión de voluntariado para ONGs desarrollado con Spring Boot y MongoDB Atlas.",
+    technologies: ["Node.js", "Express", "PostgreSQL", "JWT"], year: "2025",
+    github: "https://github.com/migueltovarb/ISWDISENO202502-2jManuel0",
+    demo: "LOCAL",
   },
   {
-    year: "2026",
-    type: "WEB DEVELOPMENT",
-    title: "Portfolio Personal v1",
-    desc: "Primera versión del portafolio personal desarrollada con HTML, CSS y JavaScript puro.",
-    tech: ["HTML", "CSS", "JavaScript", "GSAP"],
-    github: "https://github.com/jManuel0",
+    id: 4, title: "Portfolio Personal v1", category: "Web Development",
+    description: "Primera versión del portafolio personal.",
+    technologies: ["HTML", "CSS", "JavaScript", "GSAP"], year: "2026",
+    github: "https://github.com/jManuel0/Portafolio-Personal.git",
     demo: "#",
   },
 ];
 
 export default function Projects() {
   return (
-    <section id="proyectos" style={{ padding: "96px 24px", background: "var(--bg-primary)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-          <span>•</span> Portafolio
-        </p>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }} className="animate-fade-in-up">
-          Proyectos Destacados
-        </h2>
-        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 56, maxWidth: 520 }} className="animate-fade-in-up delay-100">
-          Colección de proyectos académicos y personales que demuestran mis habilidades en desarrollo de software.
-        </p>
-
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="projects-grid">
-          {projects.map((p, i) => (
-            <AnimatedSection key={p.title} delay={i * 100}>
-            <div style={{
-              background: "var(--bg-card)", border: "1px solid var(--border)",
-              borderRadius: 12, padding: 24, display: "flex", flexDirection: "column", gap: 16,
-              transition: "border-color 0.2s, transform 0.2s",
-            }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.transform = "translateY(-4px)"; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.transform = "translateY(0)"; }}>
-
-              {/* Header */}
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <div style={{ width: 40, height: 40, borderRadius: 8, background: "rgba(59,130,246,0.15)", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--accent)" }}>
-                  <Code2 size={20} />
+    <section id="projects" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+      <div className="max-w-7xl mx-auto">
+        <SectionHeader subtitle="Portafolio" title="Proyectos Destacados"
+          description="Colección de proyectos académicos y personales que demuestran mis habilidades en desarrollo de software." />
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {projects.map((project) => (
+            <Card key={project.id}>
+              <div className="flex justify-between items-start mb-4">
+                <div className="w-12 h-12 bg-[#3B82F6]/20 rounded-lg flex items-center justify-center border border-[#3B82F6]/30">
+                  <span className="text-xl font-bold text-[#3B82F6]">&lt;/&gt;</span>
                 </div>
-                <span style={{ fontSize: 12, color: "var(--text-muted)" }}>{p.year}</span>
+                <span className="text-xs text-[#94A3B8]">{project.year}</span>
               </div>
-
-              <div>
-                <p style={{ fontSize: 10, color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 6 }}>{p.type}</p>
-                <h3 style={{ fontSize: 15, fontWeight: 700, color: "#fff", lineHeight: 1.4, marginBottom: 8 }}>{p.title}</h3>
-                <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6 }}>{p.desc}</p>
-              </div>
-
-              {/* Tech tags */}
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 6 }}>
-                {p.tech.map((t) => (
-                  <span key={t} style={{
-                    fontSize: 11, padding: "3px 10px", borderRadius: 20,
-                    background: "rgba(59,130,246,0.1)", color: "var(--accent)",
-                    border: "1px solid rgba(59,130,246,0.2)", fontWeight: 500,
-                  }}>{t}</span>
+              <p className="text-xs uppercase tracking-wider text-[#94A3B8] mb-3">{project.category}</p>
+              <h3 className="text-xl font-bold mb-4 text-[#F8FAFC]">{project.title}</h3>
+              <p className="text-sm text-[#94A3B8] leading-relaxed mb-6">{project.description}</p>
+              <div className="flex flex-wrap gap-2 mb-6">
+                {project.technologies.map((tech) => (
+                  <span key={tech} className="text-xs px-3 py-1 bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded text-[#3B82F6]">{tech}</span>
                 ))}
               </div>
-
-              {/* Links */}
-              <div style={{ display: "flex", gap: 16, marginTop: "auto" }}>
-                <a href={p.github} target="_blank" rel="noopener noreferrer" style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)", fontSize: 13, textDecoration: "none", transition: "color 0.2s" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "var(--text-secondary)")}>
-                  <Github size={14} /> GitHub
+              <div className="flex gap-4">
+                <a href={project.github} target="_blank" rel="noopener noreferrer"
+                  className="text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all text-[#3B82F6]">
+                  <Github size={16} /> GitHub
                 </a>
-                <a href={p.demo} style={{ display: "flex", alignItems: "center", gap: 6, color: "var(--text-secondary)", fontSize: 13, textDecoration: "none", transition: "color 0.2s" }}
-                  onMouseEnter={e => (e.currentTarget.style.color = "#fff")}
-                  onMouseLeave={e => (e.currentTarget.style.color = "var(--text-secondary)")}>
-                  <ExternalLink size={14} /> Demo
-                </a>
+                {project.demo !== "LOCAL" && (
+                  <a href={project.demo} target="_blank" rel="noopener noreferrer"
+                    className="text-sm font-medium flex items-center gap-2 hover:gap-3 transition-all text-[#3B82F6]">
+                    Demo <ExternalLink size={16} />
+                  </a>
+                )}
               </div>
-            </div>
-            </AnimatedSection>
+            </Card>
           ))}
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 900px) { .projects-grid { grid-template-columns: repeat(2, 1fr) !important; } }
-        @media (max-width: 560px) { .projects-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
     </section>
   );
 }

@@ -1,134 +1,82 @@
 "use client";
 import Image from "next/image";
-import { Mail, Download, Github, Linkedin, Instagram } from "lucide-react";
-import { AnimatedSection } from "./AnimatedSection";
-
-const stats = [
-  { value: "2+", label: "Años Estudiando" },
-  { value: "10+", label: "Proyectos" },
-  { value: "3+", label: "Tecnologías" },
-];
-
-const socials = [
-  { icon: <Github size={18} />, href: "https://github.com/jManuel0", label: "GitHub" },
-  { icon: <Linkedin size={18} />, href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", label: "LinkedIn" },
-  { icon: <Instagram size={18} />, href: "#", label: "Instagram" },
-];
+import { Github, Linkedin, Instagram, Download, Mail } from "lucide-react";
+import { Button } from "./ui/Button";
 
 export default function Hero() {
-  return (
-    <section id="inicio" style={{ minHeight: "100vh", display: "flex", alignItems: "center", paddingTop: 64, background: "var(--bg-primary)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="hero-grid">
+  const scrollToContact = () => {
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+  };
 
-        {/* Left */}
-        <AnimatedSection delay={0}>
-          <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
-            <span style={{ color: "var(--accent)" }}>▶</span> Estudiante de Ingeniería de Software
-          </p>
-          <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: 24, color: "#fff" }}>
-            Juan Manuel<br />Ordoñez Armero
-          </h1>
-          <div style={{ borderLeft: "3px solid var(--accent)", paddingLeft: 16, marginBottom: 32 }} className="animate-fade-in delay-200">
-            <p style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.7 }}>
+  return (
+    <section id="home" className="min-h-screen flex items-center px-8 py-20 bg-[#0F172A] text-[#F8FAFC]">
+      <div className="max-w-7xl w-full mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+          {/* Left */}
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <p className="text-base text-[#94A3B8] uppercase tracking-widest">▸ Estudiante de Ingeniería de Software</p>
+              <h1 className="text-5xl lg:text-7xl font-bold tracking-tight leading-none">
+                Juan Manuel<br />Ordoñez Armero
+              </h1>
+            </div>
+            <p className="text-base text-[#94A3B8] leading-relaxed max-w-md border-l-2 border-[#3B82F6] pl-6">
               Estudiante apasionado por el desarrollo de software, enfocado en crear soluciones innovadoras y eficientes. Comprometido con el aprendizaje continuo y la mejora constante.
             </p>
+            <div className="flex flex-wrap gap-4 pt-4">
+              <Button variant="primary" size="md" onClick={scrollToContact}>
+                <Mail size={20} className="mr-2" /> Contactar
+              </Button>
+              <Button variant="outline" size="md">
+                <Download size={20} className="mr-2" /> Ver CV
+              </Button>
+            </div>
+            <div className="grid grid-cols-3 gap-8 pt-8 border-t border-[#3B82F6]/20">
+              {[["2+", "Años Estudiando"], ["10+", "Proyectos"], ["3+", "Tecnologías"]].map(([val, label]) => (
+                <div key={label}>
+                  <p className="text-4xl font-bold mb-2 text-[#3B82F6]">{val}</p>
+                  <p className="text-xs text-[#94A3B8] uppercase tracking-wider">{label}</p>
+                </div>
+              ))}
+            </div>
           </div>
 
-          {/* Buttons */}
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 48 }} className="animate-fade-in delay-300">
-            <a href="#contacto" style={{
-              display: "flex", alignItems: "center", gap: 8, padding: "12px 24px",
-              background: "var(--accent)", color: "#fff", borderRadius: 8, fontWeight: 600,
-              fontSize: 14, textDecoration: "none", transition: "background 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.background = "var(--accent-hover)")}
-              onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}>
-              <Mail size={16} /> Contactar
-            </a>
-            <a href="#" style={{
-              display: "flex", alignItems: "center", gap: 8, padding: "12px 24px",
-              background: "var(--bg-card)", color: "#fff", borderRadius: 8, fontWeight: 600,
-              fontSize: 14, textDecoration: "none", border: "1px solid var(--border)", transition: "border-color 0.2s",
-            }}
-              onMouseEnter={e => (e.currentTarget.style.borderColor = "var(--accent)")}
-              onMouseLeave={e => (e.currentTarget.style.borderColor = "var(--border)")}>
-              <Download size={16} /> Ver CV
-            </a>
-          </div>
-
-          {/* Social icons */}
-          <div style={{ display: "flex", gap: 12 }}>
-            {socials.map((s) => (
-              <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label} style={{
-                width: 40, height: 40, borderRadius: 8, background: "var(--bg-card)",
-                border: "1px solid var(--border)", display: "flex", alignItems: "center", justifyContent: "center",
-                color: "var(--text-secondary)", textDecoration: "none", transition: "all 0.2s",
-              }}
-                onMouseEnter={e => { e.currentTarget.style.borderColor = "var(--accent)"; e.currentTarget.style.color = "var(--accent)"; }}
-                onMouseLeave={e => { e.currentTarget.style.borderColor = "var(--border)"; e.currentTarget.style.color = "var(--text-secondary)"; }}>
-                {s.icon}
-              </a>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        {/* Right — photo */}
-        <AnimatedSection delay={200}>
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
-          <div style={{
-            width: 300, height: 400, borderRadius: 16,
-            border: "2px solid var(--accent)", overflow: "hidden",
-            background: "var(--bg-card)", position: "relative", flexShrink: 0,
-          }}>
-            <Image
-              src="/portafolio1.jpg"
-              alt="Juan Manuel Ordoñez Armero"
-              fill
-              style={{ objectFit: "cover", objectPosition: "center 20%" }}
-              priority
-            />
-          </div>
-
-          {/* Stats */}
-          <div style={{ display: "flex", gap: 24 }}>
-            {stats.map((s) => (
-              <div key={s.label} style={{ textAlign: "center" }}>
-                <p style={{ fontSize: 28, fontWeight: 800, color: "var(--accent)", lineHeight: 1 }}>{s.value}</p>
-                <p style={{ fontSize: 11, color: "var(--text-secondary)", textTransform: "uppercase", letterSpacing: "0.08em", marginTop: 4 }}>{s.label}</p>
+          {/* Right — photo */}
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative">
+              <div className="w-full max-w-md aspect-[3/4] border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden relative shadow-2xl shadow-[#3B82F6]/20">
+                <Image src="/portafolio1.jpg" alt="Juan Manuel Ordoñez Armero" fill
+                  className="object-cover object-top" priority />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60" />
               </div>
-            ))}
+              <div className="absolute -bottom-6 -right-6 w-24 h-24 border-4 border-[#3B82F6]/30 rounded-lg -z-10" />
+              <div className="absolute -top-6 -left-6 w-16 h-16 bg-[#3B82F6]/10 rounded-lg -z-10" />
+            </div>
           </div>
         </div>
-        </AnimatedSection>
-      </div>
 
-      {/* Scroll indicator */}
-      <div style={{
-        position: "absolute", bottom: 40, left: "50%", transform: "translateX(-50%)",
-        display: "flex", flexDirection: "column", alignItems: "center", gap: 8,
-      }}>
-        <span style={{ color: "var(--text-muted)", fontSize: 10, letterSpacing: "0.2em", textTransform: "uppercase" }}>
-          Scroll
-        </span>
-        <div style={{ width: 1, height: 60, background: "var(--border)", position: "relative", overflow: "hidden" }}>
-          <div style={{
-            position: "absolute", top: 0, left: 0, width: "100%",
-            background: "linear-gradient(to bottom, var(--accent), transparent)",
-            animation: "scrollLine 1.8s ease-in-out infinite",
-          }} />
+        {/* Fixed social sidebar */}
+        <div className="fixed bottom-8 left-8 hidden lg:flex flex-col gap-6 z-40 items-center">
+          <div className="w-px h-16 bg-[#3B82F6]/30" />
+          {[
+            { href: "https://github.com/jManuel0", icon: <Github size={24} />, label: "GitHub" },
+            { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={24} />, label: "LinkedIn" },
+            { href: "https://www.instagram.com/ordonezarmero_juan", icon: <Instagram size={24} />, label: "Instagram" },
+          ].map((s) => (
+            <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
+              className="text-[#F8FAFC] hover:text-[#3B82F6] transition-colors hover:scale-110 transform">
+              {s.icon}
+            </a>
+          ))}
+        </div>
+
+        {/* Scroll indicator */}
+        <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-3 animate-bounce">
+          <p className="text-xs text-[#94A3B8] uppercase tracking-wider">Scroll</p>
+          <div className="w-px h-12 bg-[#3B82F6]/30" />
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 768px) {
-          .hero-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
-        }
-        @keyframes scrollLine {
-          0%   { height: 0%; top: 0%; opacity: 1; }
-          50%  { height: 100%; top: 0%; opacity: 1; }
-          100% { height: 0%; top: 100%; opacity: 0; }
-        }
-      `}</style>
     </section>
   );
 }

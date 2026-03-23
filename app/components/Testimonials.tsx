@@ -1,121 +1,100 @@
 "use client";
 import { useState } from "react";
-import { Quote, Star, Send } from "lucide-react";
+import { SectionHeader } from "./ui/SectionHeader";
+import { Card } from "./ui/Card";
+import { Quote, Send } from "lucide-react";
 
 const testimonials = [
-  {
-    text: "Estudiante destacado con gran capacidad de aprendizaje y resolución de problemas. Su dedicación y entusiasmo por la programación son notables. Siempre entrega trabajos de alta calidad.",
-    name: "Ing. Carlos Esteban Rosero",
-    role: "Docente de Desarrollo Web",
-    stars: 5,
-  },
-  {
-    text: "Excelente colaborador en proyectos grupales. Su conocimiento en React y TypeScript ha sido fundamental para el éxito de nuestros trabajos académicos. Muy recomendado para trabajar en equipo.",
-    name: "Andrés Felipe Muñoz",
-    role: "Compañero de Equipo",
-    stars: 5,
-  },
-  {
-    text: "Juan Manuel desarrolló interfaces limpias y funcionales con gran profesionalismo y atención al detalle. A pesar de ser estudiante, su nivel técnico superó mis expectativas.",
-    name: "Valentina Torres",
-    role: "Compañera de Proyecto",
-    stars: 5,
-    active: true,
-  },
+  { id: 1, name: "Prof. María González", position: "Docente de Programación Web", rating: 5,
+    content: "Estudiante destacado con gran capacidad de aprendizaje y resolución de problemas. Su dedicación y entusiasmo por la programación son notables. Siempre entrega trabajos de alta calidad." },
+  { id: 2, name: "Carlos Rodríguez", position: "Compañero de Equipo", rating: 5,
+    content: "Excelente colaborador en proyectos grupales. Su conocimiento en React y TypeScript ha sido fundamental para el éxito de nuestros trabajos académicos. Muy recomendado para trabajar en equipo." },
+  { id: 3, name: "Ana Martínez", position: "Cliente Freelance", rating: 5,
+    content: "Desarrolló mi sitio web de forma profesional y eficiente. A pesar de ser estudiante, demostró gran profesionalismo y atención al detalle. El resultado superó mis expectativas." },
 ];
 
 export default function Testimonials() {
-  const [rating, setRating] = useState(5);
-  const [hover, setHover] = useState(0);
+  const [form, setForm] = useState({ name: "", position: "", content: "", rating: 5 });
+  const [hoveredStar, setHoveredStar] = useState(0);
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmitted(true);
+    setTimeout(() => setSubmitted(false), 3000);
+    setForm({ name: "", position: "", content: "", rating: 5 });
+  };
 
   return (
-    <section id="testimonios" style={{ padding: "96px 24px", background: "var(--bg-secondary)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-          <span>•</span> Testimonios
-        </p>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }}>
-          Qué Dicen de Mí
-        </h2>
-        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 56 }}>
-          Opiniones de profesores y compañeros sobre mi trabajo y dedicación.
-        </p>
+    <section id="testimonials" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+      <div className="max-w-7xl mx-auto">
+        <SectionHeader subtitle="Testimonios" title="Qué Dicen de Mí"
+          description="Opiniones de profesores, compañeros y clientes sobre mi trabajo y dedicación." align="center" />
 
-        {/* Cards */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20, marginBottom: 56 }} className="testimonials-grid">
-          {testimonials.map((t, i) => (
-            <div key={i} style={{
-              background: "var(--bg-card)", border: `1px solid ${t.active ? "var(--accent)" : "var(--border)"}`,
-              borderRadius: 12, padding: 24, display: "flex", flexDirection: "column", gap: 16, position: "relative",
-            }}>
-              <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
-                <Quote size={28} style={{ color: "var(--accent)", opacity: 0.6 }} />
-                <span style={{ fontSize: 10, padding: "3px 10px", borderRadius: 20, background: "rgba(59,130,246,0.1)", color: "var(--accent)", border: "1px solid rgba(59,130,246,0.2)", fontWeight: 600 }}>
-                  EJEMPLO
-                </span>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {testimonials.map((t) => (
+            <Card key={t.id}>
+              <div className="flex justify-between items-start mb-6">
+                <Quote size={32} className="text-[#3B82F6]/20" />
+                <span className="text-xs px-2 py-1 bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded text-[#3B82F6] uppercase tracking-wider">Ejemplo</span>
               </div>
-              <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.7, flex: 1 }}>
-                &ldquo;{t.text}&rdquo;
-              </p>
-              <div style={{ display: "flex", gap: 2 }}>
-                {Array.from({ length: t.stars }).map((_, j) => (
-                  <Star key={j} size={14} fill="var(--accent)" style={{ color: "var(--accent)" }} />
+              <p className="text-sm text-[#94A3B8] leading-relaxed mb-8 italic">&ldquo;{t.content}&rdquo;</p>
+              <div className="flex items-center gap-1 mb-4">
+                {[...Array(t.rating)].map((_, i) => (
+                  <span key={i} className="text-[#3B82F6] text-lg">★</span>
                 ))}
               </div>
-              <div>
-                <p style={{ fontSize: 14, fontWeight: 700, color: "#fff" }}>{t.name}</p>
-                <p style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em" }}>{t.role}</p>
+              <div className="pt-4 border-t border-[#3B82F6]/20">
+                <p className="font-bold mb-1 text-[#F8FAFC]">{t.name}</p>
+                <p className="text-xs text-[#94A3B8] uppercase tracking-wider">{t.position}</p>
               </div>
-            </div>
+            </Card>
           ))}
         </div>
 
         {/* Form */}
-        <div style={{ background: "var(--bg-card)", border: "1px solid var(--border)", borderRadius: 16, padding: 32, maxWidth: 600, margin: "0 auto" }}>
-          <h3 style={{ fontSize: 20, fontWeight: 700, color: "#fff", marginBottom: 8 }}>Deja tu testimonio</h3>
-          <p style={{ fontSize: 13, color: "var(--text-secondary)", marginBottom: 24 }}>
-            ¿Trabajaste conmigo o tomaste alguna clase juntos? Me encantaría escuchar tu opinión.
-          </p>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16, marginBottom: 16 }}>
-            <div>
-              <label style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: 6 }}>Nombre</label>
-              <input placeholder="Tu nombre" style={{ width: "100%", padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none", boxSizing: "border-box" }} />
-            </div>
-            <div>
-              <label style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: 6 }}>Cargo / Rol</label>
-              <input placeholder="Ej. Docente, Compañero..." style={{ width: "100%", padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none", boxSizing: "border-box" }} />
-            </div>
+        <div className="max-w-2xl mx-auto">
+          <div className="bg-[#1E293B] border border-[#3B82F6]/20 rounded-xl p-8">
+            <h3 className="text-xl font-bold text-[#F8FAFC] mb-1">Deja tu testimonio</h3>
+            <p className="text-sm text-[#94A3B8] mb-8">¿Trabajaste conmigo o tomaste alguna clase juntos? Me encantaría escuchar tu opinión.</p>
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Nombre</label>
+                  <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
+                    placeholder="Tu nombre" className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors" />
+                </div>
+                <div>
+                  <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Cargo / Rol</label>
+                  <input type="text" value={form.position} onChange={e => setForm({ ...form, position: e.target.value })}
+                    placeholder="Ej: Docente, Compañero..." className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors" />
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-3">Calificación</label>
+                <div className="flex gap-2">
+                  {[1, 2, 3, 4, 5].map((star) => (
+                    <button key={star} type="button" onClick={() => setForm({ ...form, rating: star })}
+                      onMouseEnter={() => setHoveredStar(star)} onMouseLeave={() => setHoveredStar(0)}
+                      className="text-2xl transition-transform hover:scale-110">
+                      <span className={(hoveredStar || form.rating) >= star ? "text-[#3B82F6]" : "text-[#334155]"}>★</span>
+                    </button>
+                  ))}
+                </div>
+              </div>
+              <div>
+                <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Mensaje</label>
+                <textarea value={form.content} onChange={e => setForm({ ...form, content: e.target.value })}
+                  placeholder="Escribe tu testimonio aquí..." rows={4}
+                  className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors resize-none" />
+              </div>
+              <button type="submit" className="w-full flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                {submitted ? "¡Gracias por tu testimonio! 🎉" : <><Send size={16} /> Enviar testimonio</>}
+              </button>
+            </form>
           </div>
-          <div style={{ marginBottom: 16 }}>
-            <label style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: 8 }}>Calificación</label>
-            <div style={{ display: "flex", gap: 4 }}>
-              {[1, 2, 3, 4, 5].map((n) => (
-                <button key={n} onClick={() => setRating(n)} onMouseEnter={() => setHover(n)} onMouseLeave={() => setHover(0)}
-                  style={{ background: "none", border: "none", cursor: "pointer", padding: 2 }}>
-                  <Star size={22} fill={(hover || rating) >= n ? "var(--accent)" : "transparent"} style={{ color: "var(--accent)" }} />
-                </button>
-              ))}
-            </div>
-          </div>
-          <div style={{ marginBottom: 20 }}>
-            <label style={{ fontSize: 11, color: "var(--text-muted)", textTransform: "uppercase", letterSpacing: "0.08em", display: "block", marginBottom: 6 }}>Mensaje</label>
-            <textarea placeholder="Escribe tu testimonio aquí..." rows={4} style={{ width: "100%", padding: "10px 14px", background: "var(--bg-primary)", border: "1px solid var(--border)", borderRadius: 8, color: "#fff", fontSize: 14, outline: "none", resize: "vertical", boxSizing: "border-box" }} />
-          </div>
-          <button style={{
-            width: "100%", padding: "12px", background: "var(--accent)", color: "#fff",
-            border: "none", borderRadius: 8, fontWeight: 600, fontSize: 14, cursor: "pointer",
-            display: "flex", alignItems: "center", justifyContent: "center", gap: 8, transition: "background 0.2s",
-          }}
-            onMouseEnter={e => (e.currentTarget.style.background = "var(--accent-hover)")}
-            onMouseLeave={e => (e.currentTarget.style.background = "var(--accent)")}>
-            <Send size={16} /> Enviar testimonio
-          </button>
         </div>
       </div>
-
-      <style>{`
-        @media (max-width: 900px) { .testimonials-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
     </section>
   );
 }

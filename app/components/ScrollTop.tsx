@@ -3,32 +3,19 @@ import { useEffect, useState } from "react";
 import { ArrowUp } from "lucide-react";
 
 export default function ScrollTop() {
-  const [visible, setVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setVisible(window.scrollY > 400);
-    window.addEventListener("scroll", onScroll);
-    return () => window.removeEventListener("scroll", onScroll);
+    const handleScroll = () => setIsVisible(window.scrollY > 500);
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  if (!visible) return null;
-
   return (
-    <button
-      onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+    <button onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
       aria-label="Volver arriba"
-      style={{
-        position: "fixed", bottom: 32, right: 32, zIndex: 40,
-        width: 44, height: 44, borderRadius: "50%",
-        background: "var(--accent)", color: "#fff", border: "none",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        cursor: "pointer", boxShadow: "0 4px 20px rgba(59,130,246,0.4)",
-        transition: "background 0.2s, transform 0.2s",
-      }}
-      onMouseEnter={e => { e.currentTarget.style.background = "var(--accent-hover)"; e.currentTarget.style.transform = "translateY(-2px)"; }}
-      onMouseLeave={e => { e.currentTarget.style.background = "var(--accent)"; e.currentTarget.style.transform = "translateY(0)"; }}
-    >
-      <ArrowUp size={18} />
+      className={`fixed bottom-8 right-8 z-50 w-12 h-12 bg-[#3B82F6] text-white rounded-lg flex items-center justify-center hover:bg-[#1E3A8A] transition-all duration-300 shadow-lg shadow-[#3B82F6]/30 hover:shadow-[#3B82F6]/50 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10 pointer-events-none"}`}>
+      <ArrowUp size={20} />
     </button>
   );
 }

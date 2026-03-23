@@ -1,47 +1,41 @@
+import { SectionHeader } from "./ui/SectionHeader";
+import { Card } from "./ui/Card";
 import { GraduationCap } from "lucide-react";
+
+const education = [
+  {
+    degree: "Ingeniería de Software",
+    institution: "Universidad Cooperativa De Colombia Campus Pasto",
+    year: "2024 - Presente",
+    description: "Formación integral en desarrollo de software, arquitectura de sistemas y metodologías ágiles.",
+    achievements: ["Promedio: 70%"],
+  },
+];
 
 export default function Education() {
   return (
-    <section id="educacion" style={{ padding: "96px 24px", background: "var(--bg-primary)" }}>
-      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
-        <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
-          <span>•</span> Educación
-        </p>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }}>
-          Formación Académica
-        </h2>
-        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 48 }}>
-          Mi trayectoria educativa que valida mis conocimientos técnicos.
-        </p>
-
-        {/* Education subsection */}
-        <div style={{ marginBottom: 40 }}>
-          <h3 style={{ fontSize: 18, fontWeight: 700, color: "#fff", marginBottom: 20, display: "flex", alignItems: "center", gap: 10 }}>
-            <GraduationCap size={20} style={{ color: "var(--accent)" }} /> Educación
+    <section id="education" className="px-8 py-32 bg-[#0F172A] text-[#F8FAFC]">
+      <div className="max-w-7xl mx-auto">
+        <SectionHeader subtitle="Educación" title="Formación Académica"
+          description="Mi trayectoria educativa que valida mis conocimientos técnicos." />
+        <div>
+          <h3 className="text-2xl font-bold mb-8 flex items-center gap-3 text-[#F8FAFC]">
+            <GraduationCap size={28} className="text-[#3B82F6]" /> Educación
           </h3>
-          <div style={{
-            background: "var(--bg-card)", border: "1px solid var(--border)",
-            borderRadius: 12, padding: 24,
-          }}>
-            <p style={{ fontSize: 11, color: "var(--accent)", fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase", marginBottom: 8 }}>
-              2024 - PRESENTE
-            </p>
-            <h4 style={{ fontSize: 16, fontWeight: 700, color: "#fff", marginBottom: 4 }}>
-              Ingeniería de Software
-            </h4>
-            <p style={{ fontSize: 13, color: "var(--text-muted)", marginBottom: 12 }}>
-              Universidad Cooperativa De Colombia Campus Pasto
-            </p>
-            <p style={{ fontSize: 13, color: "var(--text-secondary)", lineHeight: 1.6, marginBottom: 16 }}>
-              Formación integral en desarrollo de software, arquitectura de sistemas y metodologías ágiles.
-            </p>
-            <span style={{
-              display: "inline-block", padding: "4px 14px", borderRadius: 20,
-              background: "rgba(59,130,246,0.1)", color: "var(--accent)",
-              border: "1px solid rgba(59,130,246,0.2)", fontSize: 12, fontWeight: 600,
-            }}>
-              Promedio 70%
-            </span>
+          <div className="space-y-6">
+            {education.map((edu, index) => (
+              <Card key={index}>
+                <p className="text-xs text-[#94A3B8] mb-3 uppercase tracking-wider">{edu.year}</p>
+                <h4 className="text-xl font-bold mb-2 text-[#F8FAFC]">{edu.degree}</h4>
+                <p className="text-sm text-[#94A3B8] mb-4">{edu.institution}</p>
+                <p className="text-sm text-[#94A3B8] leading-relaxed mb-4">{edu.description}</p>
+                <div className="flex flex-wrap gap-2">
+                  {edu.achievements.map((a, i) => (
+                    <span key={i} className="text-xs px-3 py-1 bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded text-[#3B82F6]">{a}</span>
+                  ))}
+                </div>
+              </Card>
+            ))}
           </div>
         </div>
       </div>
