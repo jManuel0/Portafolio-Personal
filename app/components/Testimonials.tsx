@@ -1,28 +1,52 @@
 "use client";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SectionHeader } from "./ui/SectionHeader";
 import { Card } from "./ui/Card";
-import { Quote, Send } from "lucide-react";
+import { Quote, Send, Loader2 } from "lucide-react";
 
-const testimonials = [
-  { id: 1, name: "Prof. María González", position: "Docente de Programación Web", rating: 5,
-    content: "Estudiante destacado con gran capacidad de aprendizaje y resolución de problemas. Su dedicación y entusiasmo por la programación son notables. Siempre entrega trabajos de alta calidad." },
-  { id: 2, name: "Carlos Rodríguez", position: "Compañero de Equipo", rating: 5,
-    content: "Excelente colaborador en proyectos grupales. Su conocimiento en React y TypeScript ha sido fundamental para el éxito de nuestros trabajos académicos. Muy recomendado para trabajar en equipo." },
-  { id: 3, name: "Ana Martínez", position: "Cliente Freelance", rating: 5,
-    content: "Desarrolló mi sitio web de forma profesional y eficiente. A pesar de ser estudiante, demostró gran profesionalismo y atención al detalle. El resultado superó mis expectativas." },
-];
+interface Testimonial {
+  id: string;
+  name: string;
+  position: string;
+  content: string;
+  rating: number;
+}
 
 export default function Testimonials() {
+  const [testimonials, setTestimonials] = useState<Testimonial[]>([]);
+  const [loading, setLoading] = useState(true);
   const [form, setForm] = useState({ name: "", position: "", content: "", rating: 5 });
   const [hoveredStar, setHoveredStar] = useState(0);
+  const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  useEffect(() => {
+    fetch("/api/testimonials")
+      .then((r) => r.json())
+      .then((data) => setTestimonials(Array.isArray(data) ? data : []))
+      .finally(() => setLoading(false));
+  }, []);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-    setForm({ name: "", position: "", content: "", rating: 5 });
+    setSubmitting(true);
+    setError("");
+    try {
+      const res = await fetch("/api/testimonials", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setSubmitted(true);
+      setForm({ name: "", position: "", content: "", rating: 5 });
+      setTimeout(() => setSubmitted(false), 4000);
+    } catch {
+      setError("Hubo un error al enviar. Intenta de nuevo.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -31,26 +55,34 @@ export default function Testimonials() {
         <SectionHeader subtitle="Testimonios" title="Qué Dicen de Mí"
           description="Opiniones de profesores, compañeros y clientes sobre mi trabajo y dedicación." align="center" />
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {testimonials.map((t) => (
-            <Card key={t.id}>
-              <div className="flex justify-between items-start mb-6">
-                <Quote size={32} className="text-[#3B82F6]/20" />
-                <span className="text-xs px-2 py-1 bg-[#3B82F6]/10 border border-[#3B82F6]/30 rounded text-[#3B82F6] uppercase tracking-wider">Ejemplo</span>
-              </div>
-              <p className="text-sm text-[#94A3B8] leading-relaxed mb-8 italic">&ldquo;{t.content}&rdquo;</p>
-              <div className="flex items-center gap-1 mb-4">
-                {[...Array(t.rating)].map((_, i) => (
-                  <span key={i} className="text-[#3B82F6] text-lg">★</span>
-                ))}
-              </div>
-              <div className="pt-4 border-t border-[#3B82F6]/20">
-                <p className="font-bold mb-1 text-[#F8FAFC]">{t.name}</p>
-                <p className="text-xs text-[#94A3B8] uppercase tracking-wider">{t.position}</p>
-              </div>
-            </Card>
-          ))}
-        </div>
+        {/* Testimonials grid */}
+        {loading ? (
+          <div className="flex justify-center items-center py-20">
+            <Loader2 size={32} className="animate-spin text-[#3B82F6]" />
+          </div>
+        ) : testimonials.length === 0 ? (
+          <p className="text-center text-[#94A3B8] py-16">Aún no hay testimonios aprobados. ¡Sé el primero!</p>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+            {testimonials.map((t) => (
+              <Card key={t.id}>
+                <div className="flex justify-between items-start mb-6">
+                  <Quote size={32} className="text-[#3B82F6]/20" />
+                </div>
+                <p className="text-sm text-[#94A3B8] leading-relaxed mb-8 italic">&ldquo;{t.content}&rdquo;</p>
+                <div className="flex items-center gap-1 mb-4">
+                  {[...Array(t.rating)].map((_, i) => (
+                    <span key={i} className="text-[#3B82F6] text-lg">★</span>
+                  ))}
+                </div>
+                <div className="pt-4 border-t border-[#3B82F6]/20">
+                  <p className="font-bold mb-1 text-[#F8FAFC]">{t.name}</p>
+                  <p className="text-xs text-[#94A3B8] uppercase tracking-wider">{t.position}</p>
+                </div>
+              </Card>
+            ))}
+          </div>
+        )}
 
         {/* Form */}
         <div className="max-w-2xl mx-auto">
@@ -62,12 +94,14 @@ export default function Testimonials() {
                 <div>
                   <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Nombre</label>
                   <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
-                    placeholder="Tu nombre" className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors" />
+                    placeholder="Tu nombre" required
+                    className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors" />
                 </div>
                 <div>
                   <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Cargo / Rol</label>
                   <input type="text" value={form.position} onChange={e => setForm({ ...form, position: e.target.value })}
-                    placeholder="Ej: Docente, Compañero..." className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors" />
+                    placeholder="Ej: Docente, Compañero..."
+                    className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors" />
                 </div>
               </div>
               <div>
@@ -85,11 +119,13 @@ export default function Testimonials() {
               <div>
                 <label className="block text-xs text-[#94A3B8] uppercase tracking-wider mb-2">Mensaje</label>
                 <textarea value={form.content} onChange={e => setForm({ ...form, content: e.target.value })}
-                  placeholder="Escribe tu testimonio aquí..." rows={4}
+                  placeholder="Escribe tu testimonio aquí..." rows={4} required
                   className="w-full bg-[#0F172A] border border-[#3B82F6]/20 rounded-lg px-4 py-3 text-sm text-[#F8FAFC] placeholder-[#475569] focus:outline-none focus:border-[#3B82F6] transition-colors resize-none" />
               </div>
-              <button type="submit" className="w-full flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
-                {submitted ? "¡Gracias por tu testimonio! 🎉" : <><Send size={16} /> Enviar testimonio</>}
+              {error && <p className="text-sm text-red-400">{error}</p>}
+              <button type="submit" disabled={submitting}
+                className="w-full flex items-center justify-center gap-2 bg-[#3B82F6] hover:bg-[#2563EB] disabled:opacity-60 text-white font-semibold py-3 px-6 rounded-lg transition-colors duration-200">
+                {submitted ? "¡Gracias por tu testimonio! 🎉" : submitting ? <Loader2 size={16} className="animate-spin" /> : <><Send size={16} /> Enviar testimonio</>}
               </button>
             </form>
           </div>
