@@ -20,21 +20,21 @@ export default function Hero() {
       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "80px 24px", width: "100%", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="hero-grid">
 
         {/* Left */}
-        <div>
+        <div className="animate-slide-in-left">
           <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 16, display: "flex", alignItems: "center", gap: 8 }}>
             <span style={{ color: "var(--accent)" }}>▶</span> Estudiante de Ingeniería de Software
           </p>
           <h1 style={{ fontSize: "clamp(2.5rem, 5vw, 3.5rem)", fontWeight: 800, lineHeight: 1.1, marginBottom: 24, color: "#fff" }}>
             Juan Manuel<br />Ordoñez Armero
           </h1>
-          <div style={{ borderLeft: "3px solid var(--accent)", paddingLeft: 16, marginBottom: 32 }}>
+          <div style={{ borderLeft: "3px solid var(--accent)", paddingLeft: 16, marginBottom: 32 }} className="animate-fade-in delay-200">
             <p style={{ color: "var(--text-secondary)", fontSize: 15, lineHeight: 1.7 }}>
               Estudiante apasionado por el desarrollo de software, enfocado en crear soluciones innovadoras y eficientes. Comprometido con el aprendizaje continuo y la mejora constante.
             </p>
           </div>
 
           {/* Buttons */}
-          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 48 }}>
+          <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 48 }} className="animate-fade-in delay-300">
             <a href="#contacto" style={{
               display: "flex", alignItems: "center", gap: 8, padding: "12px 24px",
               background: "var(--accent)", color: "#fff", borderRadius: 8, fontWeight: 600,
@@ -72,7 +72,7 @@ export default function Hero() {
         </div>
 
         {/* Right — photo */}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }}>
+        <div style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: 32 }} className="animate-slide-in-right">
           <div style={{
             width: 300, height: 400, borderRadius: 16,
             border: "2px solid var(--accent)", overflow: "hidden",

@@ -47,16 +47,16 @@ export default function Projects() {
         <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
           <span>•</span> Portafolio
         </p>
-        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }}>
+        <h2 style={{ fontSize: "clamp(2rem, 4vw, 2.75rem)", fontWeight: 800, color: "#fff", marginBottom: 12 }} className="animate-fade-in-up">
           Proyectos Destacados
         </h2>
-        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 56, maxWidth: 520 }}>
+        <p style={{ color: "var(--text-secondary)", fontSize: 15, marginBottom: 56, maxWidth: 520 }} className="animate-fade-in-up delay-100">
           Colección de proyectos académicos y personales que demuestran mis habilidades en desarrollo de software.
         </p>
 
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 20 }} className="projects-grid">
-          {projects.map((p) => (
-            <div key={p.title} style={{
+          {projects.map((p, i) => (
+            <div key={p.title} className={`animate-fade-in-up delay-${(i + 1) * 100}`} style={{
               background: "var(--bg-card)", border: "1px solid var(--border)",
               borderRadius: 12, padding: 24, display: "flex", flexDirection: "column", gap: 16,
               transition: "border-color 0.2s, transform 0.2s",

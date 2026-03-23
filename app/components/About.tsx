@@ -20,7 +20,7 @@ export default function About() {
       <div style={{ maxWidth: 1200, margin: "0 auto", display: "grid", gridTemplateColumns: "1fr 1fr", gap: 64, alignItems: "center" }} className="about-grid">
 
         {/* Photo */}
-        <div style={{ display: "flex", justifyContent: "center" }}>
+        <div style={{ display: "flex", justifyContent: "center" }} className="animate-slide-in-left">
           <div style={{
             width: 320, height: 420, borderRadius: 16,
             border: "2px solid var(--accent)", overflow: "hidden",
@@ -36,7 +36,7 @@ export default function About() {
         </div>
 
         {/* Content */}
-        <div>
+        <div className="animate-slide-in-right">
           <p style={{ color: "var(--accent)", fontSize: 12, fontWeight: 600, letterSpacing: "0.15em", textTransform: "uppercase", marginBottom: 8, display: "flex", alignItems: "center", gap: 8 }}>
             <span>•</span> Sobre Mí
           </p>
