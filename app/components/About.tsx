@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BookOpen, GraduationCap, Code2, Monitor, Database } from "lucide-react";
 import { Download } from "lucide-react";
 
@@ -22,11 +23,14 @@ export default function About() {
           <div style={{
             width: 300, height: 340, borderRadius: 16,
             border: "2px solid var(--accent)", overflow: "hidden",
-            background: "var(--bg-card)", display: "flex", alignItems: "center", justifyContent: "center",
-            flexDirection: "column", gap: 8, color: "var(--text-muted)", fontSize: 14,
+            background: "var(--bg-card)", position: "relative",
           }}>
-            <span style={{ fontSize: 48 }}>👤</span>
-            <span style={{ textAlign: "center" }}>Agrega tu foto en<br />/public/photo.jpg</span>
+            <Image
+              src="/photo2.jpg"
+              alt="Juan Manuel Ordoñez Armero"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+            />
           </div>
         </div>
 

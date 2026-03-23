@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Mail, Download, Github, Linkedin, Instagram } from "lucide-react";
 
 const stats = [
@@ -76,11 +77,13 @@ export default function Hero() {
             border: "2px solid var(--accent)", overflow: "hidden",
             background: "var(--bg-card)", position: "relative",
           }}>
-            {/* Placeholder — replace src with your actual photo */}
-            <div style={{ width: "100%", height: "100%", display: "flex", alignItems: "center", justifyContent: "center", color: "var(--text-muted)", fontSize: 14, flexDirection: "column", gap: 8 }}>
-              <span style={{ fontSize: 48 }}>👤</span>
-              <span>Agrega tu foto en<br />/public/photo.jpg</span>
-            </div>
+            <Image
+              src="/photo1.jpg"
+              alt="Juan Manuel Ordoñez Armero"
+              fill
+              style={{ objectFit: "cover", objectPosition: "center top" }}
+              priority
+            />
           </div>
 
           {/* Stats */}
