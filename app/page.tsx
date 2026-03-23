@@ -19,8 +19,8 @@ export default function Home() {
       <SocialSidebar />
       <Navbar />
       <Hero />
-      <Services />
       <About />
+      <Services />
       <Projects />
       <Experience />
       <Education />
