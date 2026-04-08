@@ -2,6 +2,8 @@
 import Image from "next/image";
 import { Github, Linkedin, Instagram, Download, Mail } from "lucide-react";
 import { Button } from "./ui/Button";
+import { useApp } from "../context/AppContext";
+import { t } from "../i18n/translations";
 
 const socials = [
   { href: "https://github.com/jManuel0", icon: <Github size={22} />, label: "GitHub" },
@@ -10,50 +12,55 @@ const socials = [
 ];
 
 export default function Hero() {
+  const { lang } = useApp();
+  const tr = t[lang].hero;
+
   const scrollToContact = () => {
     document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center px-4 sm:px-8 py-24 bg-[#0F172A] text-[#F8FAFC]">
+    <section id="home" className="min-h-screen flex items-center px-4 sm:px-8 py-24 transition-colors duration-300"
+      style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}>
       <div className="max-w-7xl w-full mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
           {/* Left */}
-          <div className="space-y-6 sm:space-y-8 order-2 lg:order-1">
+          <div className="space-y-6 sm:space-y-8 order-2 lg:order-1 text-center lg:text-left">
             <div className="space-y-3 sm:space-y-4">
-              <p className="text-sm sm:text-base text-[#94A3B8] uppercase tracking-widest">▸ Estudiante de Ingeniería de Software</p>
+              <p className="text-sm sm:text-base uppercase tracking-widest" style={{ color: "var(--text-secondary)" }}>{tr.tag}</p>
               <h1 className="text-4xl sm:text-5xl lg:text-7xl font-bold tracking-tight leading-none">
                 Juan Manuel<br />Ordoñez Armero
               </h1>
             </div>
-            <p className="text-sm sm:text-base text-[#94A3B8] leading-relaxed max-w-md border-l-2 border-[#3B82F6] pl-4 sm:pl-6">
-              Estudiante apasionado por el desarrollo de software, enfocado en crear soluciones innovadoras y eficientes. Comprometido con el aprendizaje continuo y la mejora constante.
+            <p className="text-sm sm:text-base leading-relaxed max-w-md border-l-2 border-[#3B82F6] pl-4 sm:pl-6 mx-auto lg:mx-0 text-left"
+              style={{ color: "var(--text-secondary)" }}>
+              {tr.bio}
             </p>
-            <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4">
+            <div className="flex flex-wrap gap-3 sm:gap-4 pt-2 sm:pt-4 justify-center lg:justify-start">
               <Button variant="primary" size="md" onClick={scrollToContact}>
-                <Mail size={18} className="mr-2" /> Contactar
+                <Mail size={18} className="mr-2" /> {tr.contact}
               </Button>
               <Button variant="outline" size="md">
-                <Download size={18} className="mr-2" /> Ver CV
+                <Download size={18} className="mr-2" /> {tr.cv}
               </Button>
             </div>
 
-            {/* Social icons — visible on mobile, hidden on lg (sidebar takes over) */}
-            <div className="flex gap-5 lg:hidden pt-2">
+            {/* Social icons — mobile only */}
+            <div className="flex gap-5 lg:hidden justify-center pt-2">
               {socials.map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                  className="text-[#94A3B8] hover:text-[#3B82F6] transition-colors">
+                  className="hover:text-[#3B82F6] transition-colors" style={{ color: "var(--text-secondary)" }}>
                   {s.icon}
                 </a>
               ))}
             </div>
 
-            <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-4 sm:pt-8 border-t border-[#3B82F6]/20">
-              {[["2+", "Años Estudiando"], ["10+", "Proyectos"], ["3+", "Tecnologías"]].map(([val, label]) => (
-                <div key={label}>
+            <div className="grid grid-cols-3 gap-4 sm:gap-8 pt-4 sm:pt-8 border-t" style={{ borderColor: "var(--border)" }}>
+              {[["2+", tr.years], ["10+", tr.projects], ["3+", tr.techs]].map(([val, label]) => (
+                <div key={label} className="text-center lg:text-left">
                   <p className="text-3xl sm:text-4xl font-bold mb-1 sm:mb-2 text-[#3B82F6]">{val}</p>
-                  <p className="text-xs text-[#94A3B8] uppercase tracking-wider">{label}</p>
+                  <p className="text-xs uppercase tracking-wider" style={{ color: "var(--text-secondary)" }}>{label}</p>
                 </div>
               ))}
             </div>
@@ -62,8 +69,8 @@ export default function Hero() {
           {/* Right — photo */}
           <div className="flex justify-center order-1 lg:order-2">
             <div className="relative">
-              <div className="border-4 border-[#3B82F6] rounded-lg bg-gradient-to-br from-[#1E3A8A] to-[#0F172A] overflow-hidden shadow-2xl shadow-[#3B82F6]/20"
-                style={{ position: "relative", width: "min(320px, 80vw)", height: "min(427px, 107vw)" }}>
+              <div className="border-4 border-[#3B82F6] rounded-lg overflow-hidden shadow-2xl shadow-[#3B82F6]/20"
+                style={{ position: "relative", width: "min(320px, 80vw)", height: "min(427px, 107vw)", background: "linear-gradient(135deg, #1E3A8A, #0F172A)" }}>
                 <Image src="/portafolio1.jpg" alt="Juan Manuel Ordoñez Armero" fill
                   style={{ objectFit: "cover", objectPosition: "center top" }} priority />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-60" />
@@ -79,15 +86,15 @@ export default function Hero() {
           <div className="w-px h-16 bg-[#3B82F6]/30" />
           {socials.map((s) => (
             <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-              className="text-[#F8FAFC] hover:text-[#3B82F6] transition-colors hover:scale-110 transform">
+              className="hover:text-[#3B82F6] transition-colors hover:scale-110 transform" style={{ color: "var(--text-primary)" }}>
               {s.icon}
             </a>
           ))}
         </div>
 
-        {/* Scroll indicator — desktop only */}
+        {/* Scroll indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 hidden lg:flex flex-col items-center gap-3 animate-bounce">
-          <p className="text-xs text-[#94A3B8] uppercase tracking-wider">Scroll</p>
+          <p className="text-xs uppercase tracking-wider" style={{ color: "var(--text-secondary)" }}>{tr.scroll}</p>
           <div className="w-px h-12 bg-[#3B82F6]/30" />
         </div>
       </div>

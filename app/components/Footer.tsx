@@ -1,73 +1,80 @@
+"use client";
 import { Github, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { useApp } from "../context/AppContext";
+import { t } from "../i18n/translations";
 
 export default function Footer() {
+  const { lang } = useApp();
+  const tr = t[lang].footer;
+  const nav = t[lang].nav;
+
+  const socials = [
+    { href: "https://github.com/jManuel0", icon: <Github size={22} />, label: "GitHub" },
+    { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={22} />, label: "LinkedIn" },
+    { href: "https://www.instagram.com/ordonezarmero_juan", icon: <Instagram size={22} />, label: "Instagram" },
+  ];
+
   return (
-    <footer className="bg-[#0F172A] text-[#F8FAFC] border-t border-[#3B82F6]/20">
+    <footer className="border-t transition-colors duration-300" style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)", borderColor: "var(--border)" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-8 py-12 sm:py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 sm:gap-12 mb-12 sm:mb-16">
           {/* Brand */}
-          <div>
-            <div className="w-12 h-12 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center mb-6">
-              <span className="text-[#F8FAFC] text-xl font-bold">&lt;/&gt;</span>
+          <div className="text-center sm:text-left">
+            <div className="w-12 h-12 border-2 border-[#3B82F6] rounded-lg flex items-center justify-center mb-5 mx-auto sm:mx-0">
+              <span className="text-xl font-bold" style={{ color: "var(--text-primary)" }}>&lt;/&gt;</span>
             </div>
-            <p className="text-sm text-[#94A3B8] leading-relaxed mb-6">
-              Estudiante de Ingeniería de Software apasionado por crear soluciones innovadoras.
-            </p>
-            <div className="flex gap-4">
-              {[
-                { href: "https://github.com/jManuel0", icon: <Github size={24} />, label: "GitHub" },
-                { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={24} />, label: "LinkedIn" },
-                { href: "https://www.instagram.com/ordonezarmero_juan", icon: <Instagram size={24} />, label: "Instagram" },
-              ].map((s) => (
+            <p className="text-sm leading-relaxed mb-5" style={{ color: "var(--text-secondary)" }}>{tr.bio}</p>
+            <div className="flex gap-4 justify-center sm:justify-start">
+              {socials.map((s) => (
                 <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" aria-label={s.label}
-                  className="text-[#F8FAFC] hover:text-[#3B82F6] transition-colors">{s.icon}</a>
+                  className="hover:text-[#3B82F6] transition-colors" style={{ color: "var(--text-primary)" }}>{s.icon}</a>
               ))}
             </div>
           </div>
 
           {/* Quick links */}
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-[#F8FAFC]">Enlaces Rápidos</h4>
+          <div className="text-center sm:text-left">
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-5" style={{ color: "var(--text-primary)" }}>{tr.quickLinks}</h4>
             <ul className="space-y-3">
-              {[["#home","Inicio"],["#about","Sobre Mí"],["#projects","Proyectos"],["#experience","Experiencia"],["#contact","Contacto"]].map(([href, label]) => (
-                <li key={href}><a href={href} className="text-sm text-[#94A3B8] hover:text-[#3B82F6] transition-colors">{label}</a></li>
+              {[["#home", nav.home], ["#about", nav.about], ["#projects", nav.projects], ["#experience", nav.experience], ["#contact", nav.contact]].map(([href, label]) => (
+                <li key={href}><a href={href} className="text-sm hover:text-[#3B82F6] transition-colors" style={{ color: "var(--text-secondary)" }}>{label}</a></li>
               ))}
             </ul>
           </div>
 
           {/* Services */}
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-[#F8FAFC]">Servicios</h4>
+          <div className="text-center sm:text-left">
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-5" style={{ color: "var(--text-primary)" }}>{tr.services}</h4>
             <ul className="space-y-3">
-              {["Desarrollo Web","React & TypeScript","Diseño Responsive","APIs REST","Freelance"].map((s) => (
-                <li key={s}><span className="text-sm text-[#94A3B8]">{s}</span></li>
+              {["Desarrollo Web / Web Dev", "React & TypeScript", "Diseño Responsive", "APIs REST", "Freelance"].map((s) => (
+                <li key={s}><span className="text-sm" style={{ color: "var(--text-secondary)" }}>{s}</span></li>
               ))}
             </ul>
           </div>
 
           {/* Contact */}
-          <div>
-            <h4 className="text-sm font-bold uppercase tracking-wider mb-6 text-[#F8FAFC]">Contacto</h4>
+          <div className="text-center sm:text-left">
+            <h4 className="text-sm font-bold uppercase tracking-wider mb-5" style={{ color: "var(--text-primary)" }}>{tr.contactTitle}</h4>
             <ul className="space-y-4">
               {[
-                { icon: <Mail size={18} className="mt-0.5 flex-shrink-0 text-[#3B82F6]" />, text: "juanmaarmero30@gmail.com" },
-                { icon: <Phone size={18} className="mt-0.5 flex-shrink-0 text-[#3B82F6]" />, text: "+57 317 314 5521" },
-                { icon: <MapPin size={18} className="mt-0.5 flex-shrink-0 text-[#3B82F6]" />, text: "Pasto Nariño, Colombia" },
+                { icon: <Mail size={16} className="flex-shrink-0 text-[#3B82F6]" />, text: "juanmaarmero30@gmail.com" },
+                { icon: <Phone size={16} className="flex-shrink-0 text-[#3B82F6]" />, text: "+57 317 314 5521" },
+                { icon: <MapPin size={16} className="flex-shrink-0 text-[#3B82F6]" />, text: "Pasto Nariño, Colombia" },
               ].map((item) => (
-                <li key={item.text} className="flex items-start gap-3">
+                <li key={item.text} className="flex items-center gap-3 justify-center sm:justify-start">
                   {item.icon}
-                  <span className="text-sm text-[#94A3B8]">{item.text}</span>
+                  <span className="text-sm" style={{ color: "var(--text-secondary)" }}>{item.text}</span>
                 </li>
               ))}
             </ul>
           </div>
         </div>
 
-        <div className="pt-8 border-t border-[#3B82F6]/20 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-[#94A3B8]">© 2026 Juan Manuel Ordoñez Armero. Todos los derechos reservados.</p>
-          <div className="flex gap-8 text-sm text-[#94A3B8]">
-            {["Privacidad","Términos","Cookies"].map((l) => (
-              <a key={l} href="#" className="hover:text-[#3B82F6] transition-colors">{l}</a>
+        <div className="pt-6 sm:pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs sm:text-sm text-center sm:text-left" style={{ color: "var(--text-secondary)" }}>{tr.rights}</p>
+          <div className="flex gap-6 text-sm">
+            {[tr.privacy, tr.terms, tr.cookies].map((l) => (
+              <a key={l} href="#" className="hover:text-[#3B82F6] transition-colors text-xs sm:text-sm" style={{ color: "var(--text-secondary)" }}>{l}</a>
             ))}
           </div>
         </div>

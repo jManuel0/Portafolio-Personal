@@ -4,37 +4,57 @@
 
 :root {
   --font-size: 16px;
+  --primary: #3B82F6;
+  --primary-foreground: #F8FAFC;
+  --secondary: #1E3A8A;
+  --destructive: #EF4444;
+  --ring: #3B82F6;
+  --radius: 0.5rem;
+  --accent-hover: #2563eb;
+}
+
+/* Dark theme (default) */
+html, html.dark {
   --background: #0F172A;
   --foreground: #F8FAFC;
   --card: #1E293B;
   --card-foreground: #F8FAFC;
-  --popover: #1E293B;
-  --popover-foreground: #F8FAFC;
-  --primary: #3B82F6;
-  --primary-foreground: #F8FAFC;
-  --secondary: #1E3A8A;
-  --secondary-foreground: #F8FAFC;
   --muted: #334155;
   --muted-foreground: #94A3B8;
   --accent: #3B82F6;
-  --accent-foreground: #F8FAFC;
-  --destructive: #EF4444;
-  --destructive-foreground: #F8FAFC;
   --border: rgba(59, 130, 246, 0.2);
-  --input: transparent;
   --input-background: #1E293B;
-  --ring: #3B82F6;
-  --radius: 0.5rem;
-
-  /* Portfolio custom vars mapped to the design system */
   --bg-primary: #0F172A;
   --bg-secondary: #1E293B;
   --bg-card: #1E293B;
   --bg-card-hover: #334155;
-  --accent-hover: #2563eb;
   --text-primary: #F8FAFC;
   --text-secondary: #94A3B8;
   --text-muted: #64748B;
+  --nav-bg: rgba(15, 23, 42, 0.95);
+  --input-bg: #0F172A;
+}
+
+/* Light theme */
+html.light {
+  --background: #F8FAFC;
+  --foreground: #0F172A;
+  --card: #FFFFFF;
+  --card-foreground: #0F172A;
+  --muted: #E2E8F0;
+  --muted-foreground: #64748B;
+  --accent: #3B82F6;
+  --border: rgba(59, 130, 246, 0.25);
+  --input-background: #FFFFFF;
+  --bg-primary: #F8FAFC;
+  --bg-secondary: #FFFFFF;
+  --bg-card: #FFFFFF;
+  --bg-card-hover: #F1F5F9;
+  --text-primary: #0F172A;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  --nav-bg: rgba(248, 250, 252, 0.95);
+  --input-bg: #F1F5F9;
 }
 
 @theme inline {
@@ -66,8 +86,10 @@
     scroll-behavior: smooth;
   }
   body {
-    @apply bg-background text-foreground;
+    background-color: var(--background);
+    color: var(--foreground);
     font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
