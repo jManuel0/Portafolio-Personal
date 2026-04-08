@@ -1,5 +1,4 @@
 "use client";
-import Image from "next/image";
 import { Github, Linkedin, Download, Mail } from "lucide-react";
 import { Button } from "./ui/Button";
 import { useApp } from "../context/AppContext";
@@ -27,12 +26,11 @@ export default function Hero() {
         {/* Main content */}
         <div className="flex-1 flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-8">
 
-          {/* Photo — avatar */}
+          {/* Avatar */}
           <div className="flex items-center justify-center order-1 lg:order-2 w-full">
-            <div className="rounded-full border-4 border-[#3B82F6] overflow-hidden shadow-2xl shadow-[#3B82F6]/20"
-              style={{ position: "relative", width: "min(260px, 70vw)", height: "min(260px, 70vw)" }}>
-              <Image src="/portafolio1.jpg" alt="Juan Manuel Ordoñez Armero" fill
-                style={{ objectFit: "cover", objectPosition: "center top" }} priority />
+            <div className="rounded-full border-4 border-[#3B82F6] shadow-2xl shadow-[#3B82F6]/20 flex items-center justify-center flex-shrink-0"
+              style={{ width: "min(260px, 70vw)", height: "min(260px, 70vw)", background: "linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%)" }}>
+              <span className="font-bold select-none text-[#3B82F6]" style={{ fontSize: "min(90px, 24vw)", lineHeight: 1 }}>JO</span>
             </div>
           </div>
 
