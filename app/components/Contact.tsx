@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { Github, Linkedin, Instagram, Send, Mail, Phone, MapPin } from "lucide-react";
+import { Github, Linkedin, Send, Mail, Phone, MapPin } from "lucide-react";
 import { SectionHeader } from "./ui/SectionHeader";
 import { Button } from "./ui/Button";
 import { useApp } from "../context/AppContext";
@@ -38,7 +38,6 @@ export default function Contact() {
   const socials = [
     { href: "https://github.com/jManuel0", icon: <Github size={24} className="text-[#3B82F6]" />, label: "GitHub", handle: "@jManuel0" },
     { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={24} className="text-[#3B82F6]" />, label: "LinkedIn", handle: "@Juan Manuel Ordoñez Armero" },
-    { href: "https://www.instagram.com/ordonezarmero_juan", icon: <Instagram size={24} className="text-[#3B82F6]" />, label: "Instagram", handle: "@ordonezarmero_juan" },
   ];
 
   return (

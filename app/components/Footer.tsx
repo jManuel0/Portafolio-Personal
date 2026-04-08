@@ -1,5 +1,5 @@
 "use client";
-import { Github, Linkedin, Instagram, Mail, Phone, MapPin } from "lucide-react";
+import { Github, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import { useApp } from "../context/AppContext";
 import { t } from "../i18n/translations";
 
@@ -11,7 +11,6 @@ export default function Footer() {
   const socials = [
     { href: "https://github.com/jManuel0", icon: <Github size={22} />, label: "GitHub" },
     { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={22} />, label: "LinkedIn" },
-    { href: "https://www.instagram.com/ordonezarmero_juan", icon: <Instagram size={22} />, label: "Instagram" },
   ];
 
   return (
@@ -70,13 +69,8 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-6 sm:pt-8 border-t flex flex-col sm:flex-row justify-between items-center gap-4" style={{ borderColor: "var(--border)" }}>
-          <p className="text-xs sm:text-sm text-center sm:text-left" style={{ color: "var(--text-secondary)" }}>{tr.rights}</p>
-          <div className="flex gap-6 text-sm">
-            {[tr.privacy, tr.terms, tr.cookies].map((l) => (
-              <a key={l} href="#" className="hover:text-[#3B82F6] transition-colors text-xs sm:text-sm" style={{ color: "var(--text-secondary)" }}>{l}</a>
-            ))}
-          </div>
+        <div className="pt-6 sm:pt-8 border-t flex justify-center" style={{ borderColor: "var(--border)" }}>
+          <p className="text-xs sm:text-sm text-center" style={{ color: "var(--text-secondary)" }}>{tr.rights}</p>
         </div>
       </div>
     </footer>
