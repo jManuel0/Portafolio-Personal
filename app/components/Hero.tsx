@@ -19,28 +19,17 @@ export default function Hero() {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center px-4 sm:px-8 py-24 transition-colors duration-300"
+    <section id="home" className="min-h-screen flex flex-col px-4 sm:px-8 pt-24 pb-0 transition-colors duration-300"
       style={{ backgroundColor: "var(--bg-primary)", color: "var(--text-primary)" }}>
-      <div className="max-w-7xl w-full mx-auto">
-        <div className="flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div className="max-w-7xl w-full mx-auto flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col lg:grid lg:grid-cols-2 gap-12 lg:gap-16 items-center py-8">
 
-          {/* Photo — avatar style, always on top on mobile */}
+          {/* Photo — avatar style */}
           <div className="flex flex-col items-center order-1 lg:order-2 gap-8 w-full">
-            {/* Avatar circle */}
             <div className="rounded-full border-4 border-[#3B82F6] overflow-hidden shadow-2xl shadow-[#3B82F6]/20 flex-shrink-0"
               style={{ position: "relative", width: "min(260px, 70vw)", height: "min(260px, 70vw)" }}>
               <Image src="/portafolio1.jpg" alt="Juan Manuel Ordoñez Armero" fill
                 style={{ objectFit: "cover", objectPosition: "center top" }} priority />
-            </div>
-
-            {/* Stats below avatar, separated by line */}
-            <div className="w-full max-w-sm grid grid-cols-3 gap-4 pt-6 border-t text-center" style={{ borderColor: "var(--border)" }}>
-              {[["2+", tr.years], ["10+", tr.projects], ["3+", tr.techs]].map(([val, label]) => (
-                <div key={label}>
-                  <p className="text-2xl sm:text-3xl font-bold mb-1 text-[#3B82F6]">{val}</p>
-                  <p className="text-xs uppercase tracking-wider" style={{ color: "var(--text-secondary)" }}>{label}</p>
-                </div>
-              ))}
             </div>
           </div>
 
@@ -76,6 +65,17 @@ export default function Hero() {
             </div>
           </div>
         </div>
+
+        {/* Stats pinned to bottom of hero */}
+        <div className="w-full grid grid-cols-3 gap-4 py-8 border-t text-center" style={{ borderColor: "var(--border)" }}>
+          {[["2+", tr.years], ["10+", tr.projects], ["3+", tr.techs]].map(([val, label]) => (
+            <div key={label}>
+              <p className="text-2xl sm:text-4xl font-bold mb-1 text-[#3B82F6]">{val}</p>
+              <p className="text-xs uppercase tracking-wider" style={{ color: "var(--text-secondary)" }}>{label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
 
         {/* Fixed social sidebar — desktop only */}
         <div className="fixed bottom-8 left-8 hidden lg:flex flex-col gap-6 z-40 items-center">
