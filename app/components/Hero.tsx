@@ -50,7 +50,7 @@ export default function Hero() {
               <Button variant="primary" size="md" onClick={scrollToContact}>
                 <Mail size={18} className="mr-2" /> {tr.contact}
               </Button>
-              <Button variant="outline" size="md">
+              <Button variant="outline" size="md" onClick={() => window.open("/Cv - Estudiante de Software.pdf", "_blank")}>
                 <Download size={18} className="mr-2" /> {tr.cv}
               </Button>
             </div>

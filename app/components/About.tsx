@@ -82,7 +82,7 @@ export default function About() {
             </div>
 
             <div className="pt-2 flex justify-center lg:justify-start">
-              <Button variant="primary" size="md">
+              <Button variant="primary" size="md" onClick={() => window.open("/Cv - Estudiante de Software.pdf", "_blank")}>
                 <Download size={18} className="mr-2" /> {tr.downloadCv}
               </Button>
             </div>
