@@ -63,7 +63,7 @@ export default function Contact() {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Form */}
-          <div className="lg:col-span-2 rounded-lg p-6 sm:p-10 border" style={{ backgroundColor: "var(--bg-card)", borderColor: "var(--border)" }}>
+          <div className="lg:col-span-2 rounded-lg p-6 sm:p-10 border min-w-0" style={{ backgroundColor: "var(--bg-card)", borderColor: "var(--border)" }}>
             <h3 className="text-xl sm:text-2xl font-bold mb-6 sm:mb-8" style={{ color: "var(--text-primary)" }}>{tr.formTitle}</h3>
             {submitStatus === "success" && (
               <div className="mb-6 p-4 bg-[#3B82F6]/20 border border-[#3B82F6] rounded-lg" style={{ color: "var(--text-primary)" }}>
@@ -74,21 +74,21 @@ export default function Contact() {
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange}
                   placeholder={tr.firstName} required
-                  className="w-full rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                  style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
+                  className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
+                  style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
                 <input type="text" name="lastName" value={formData.lastName} onChange={handleChange}
                   placeholder={tr.lastName} required
-                  className="w-full rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                  style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
+                  className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
+                  style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
               </div>
               <input type="email" name="email" value={formData.email} onChange={handleChange}
                 placeholder={tr.emailField} required
-                className="w-full rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
+                className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
+                style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
               <input type="text" name="subject" value={formData.subject} onChange={handleChange}
                 placeholder={tr.subject} required
-                className="w-full rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
+                className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
+                style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
               <textarea name="message" value={formData.message} onChange={handleChange}
                 placeholder={tr.messageField} rows={6} required
                 className="w-full rounded-lg px-5 py-4 border focus:outline-none resize-none focus:border-[#3B82F6] transition-colors"
