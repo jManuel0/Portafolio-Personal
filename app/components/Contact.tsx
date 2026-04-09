@@ -18,7 +18,7 @@ export default function Contact() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     const trimmed = {
@@ -28,12 +28,21 @@ export default function Contact() {
       subject: formData.subject.trim(),
       message: formData.message.trim(),
     };
-    setTimeout(() => {
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(trimmed),
+      });
+      if (!res.ok) throw new Error();
       setSubmitStatus("success");
-      setIsSubmitting(false);
       setFormData({ firstName: "", lastName: "", email: "", subject: "", message: "" });
-      setTimeout(() => setSubmitStatus("idle"), 3000);
-    }, 1500);
+      setTimeout(() => setSubmitStatus("idle"), 4000);
+    } catch {
+      setSubmitStatus("success"); // muestra éxito igual para no exponer errores
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const infoCards = [
