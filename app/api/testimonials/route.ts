@@ -6,10 +6,10 @@ const HEADERS = {
   "Content-Type": "application/json",
 };
 
-// GET — returns only approved testimonials
+// GET — returns all testimonials
 export async function GET() {
   const res = await fetch(
-    `${BASE_URL}?filterByFormula={Approved}=1&sort[0][field]=name&sort[0][direction]=asc`,
+    `${BASE_URL}?sort[0][field]=name&sort[0][direction]=asc`,
     { headers: HEADERS, cache: "no-store" }
   );
   if (!res.ok) return NextResponse.json({ error: "Error fetching" }, { status: 500 });
