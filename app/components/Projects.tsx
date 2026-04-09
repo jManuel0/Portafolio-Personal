@@ -26,7 +26,7 @@ const projects = [
   { id: 4, titleEs: "App de Voluntariado ONG", titleEn: "NGO Volunteering App", category: "Proyecto Clase / Class Project",
     descEs: "Sistema de gestión de voluntariado para ONGs con Spring Boot y MongoDB Atlas.", descEn: "Volunteer management system for NGOs built with Spring Boot and MongoDB Atlas.",
     technologies: ["Node.js", "Express", "PostgreSQL", "JWT"], year: "2025",
-    image: "/proyecto3.png",
+    image: "/App Voluntariado ONG.png",
     github: "https://github.com/migueltovarb/ISWDISENO202502-2jManuel0", demo: "LOCAL" },
 ];
 
