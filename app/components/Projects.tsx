@@ -11,7 +11,7 @@ const projects = [
     descEn: "My first personal portfolio, an academic project where I combined several technologies. The most challenging part was the design, but it was a key learning experience that taught me how to structure and present my work.",
     technologies: ["HTML", "CSS", "JavaScript", "GSAP"], year: "2026",
     image: "/Portfolio Personal v1.png",
-    github: "https://github.com/jManuel0/Portafolio-Personal.git", demo: "#" },
+    github: "https://github.com/jManuel0/Portafolio-Personal.git", demo: "https://portafolio-personal-dun.vercel.app" },
   { id: 2, titleEs: "Demo Mercado Libre", titleEn: "Mercado Libre Demo", category: "Proyecto en Clase / Class Project",
     descEs: "Demo de la landing page de Mercado Libre hecho en clase. Me ayudó a entender cómo funcionan los marketplaces web, las pasarelas de pago y la estructura de una tienda online real.",
     descEn: "Mercado Libre landing page demo built in class. It helped me understand how web marketplaces work, payment gateways and the structure of a real online store.",
