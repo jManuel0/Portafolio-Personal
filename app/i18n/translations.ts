@@ -1,6 +1,6 @@
 export const t = {
   es: {
-    nav: { home: "Inicio", about: "Sobre Mí", projects: "Proyectos", experience: "Experiencia", contact: "Contacto" },
+    nav: { home: "Inicio", about: "Sobre Mí", projects: "Proyectos", experience: "Experiencia", testimonials: "Testimonios", contact: "Contacto" },
     hero: {
       tag: "▸ Estudiante de Ingeniería de Software",
       bio: "Estudiante apasionado por el desarrollo de software, enfocado en crear soluciones innovadoras y eficientes. Comprometido con el aprendizaje continuo y la mejora constante.",
@@ -69,7 +69,7 @@ export const t = {
     },
   },
   en: {
-    nav: { home: "Home", about: "About Me", projects: "Projects", experience: "Experience", contact: "Contact" },
+    nav: { home: "Home", about: "About Me", projects: "Projects", experience: "Experience", testimonials: "Testimonials", contact: "Contact" },
     hero: {
       tag: "▸ Software Engineering Student",
       bio: "Passionate software development student focused on building innovative and efficient solutions. Committed to continuous learning and constant improvement.",

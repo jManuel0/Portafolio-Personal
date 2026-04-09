@@ -11,11 +11,12 @@ export default function Navbar() {
   const [activeSection, setActiveSection] = useState("home");
 
   const navLinks = [
-    { href: "#home",       label: tr.home },
-    { href: "#about",      label: tr.about },
-    { href: "#projects",   label: tr.projects },
-    { href: "#experience", label: tr.experience },
-    { href: "#contact",    label: tr.contact },
+    { href: "#home",         label: tr.home },
+    { href: "#about",        label: tr.about },
+    { href: "#projects",     label: tr.projects },
+    { href: "#experience",   label: tr.experience },
+    { href: "#testimonials", label: tr.testimonials },
+    { href: "#contact",      label: tr.contact },
   ];
 
   useEffect(() => {
