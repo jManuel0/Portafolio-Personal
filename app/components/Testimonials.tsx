@@ -99,14 +99,14 @@ export default function Testimonials() {
                 <div>
                   <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.name}</label>
                   <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
-                    placeholder={tr.name} required
+                    placeholder={tr.name} required spellCheck autoCorrect="on"
                     className="w-full min-w-0 rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
                     style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden", textOverflow: "ellipsis" }} />
                 </div>
                 <div>
                   <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.role}</label>
                   <input type="text" value={form.position} onChange={e => setForm({ ...form, position: e.target.value })}
-                    placeholder={tr.rolePlaceholder}
+                    placeholder={tr.rolePlaceholder} spellCheck autoCorrect="on"
                     className="w-full min-w-0 rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
                     style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
                 </div>
@@ -126,7 +126,7 @@ export default function Testimonials() {
               <div>
                 <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.message}</label>
                 <textarea value={form.content} onChange={e => setForm({ ...form, content: e.target.value })}
-                  placeholder={tr.messagePlaceholder} rows={4} required
+                  placeholder={tr.messagePlaceholder} rows={4} required spellCheck autoCorrect="on"
                   className="w-full rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors resize-none"
                   style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
               </div>

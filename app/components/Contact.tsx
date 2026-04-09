@@ -89,11 +89,11 @@ export default function Contact() {
             <form onSubmit={handleSubmit} className="space-y-5 w-full min-w-0 overflow-hidden">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full min-w-0">
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange}
-                  placeholder={tr.firstName} required
+                  placeholder={tr.firstName} required spellCheck autoCorrect="on"
                   className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
                   style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
                 <input type="text" name="lastName" value={formData.lastName} onChange={handleChange}
-                  placeholder={tr.lastName} required
+                  placeholder={tr.lastName} required spellCheck autoCorrect="on"
                   className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
                   style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
               </div>
@@ -102,11 +102,11 @@ export default function Contact() {
                 className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
                 style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
               <input type="text" name="subject" value={formData.subject} onChange={handleChange}
-                placeholder={tr.subject} required
+                placeholder={tr.subject} required spellCheck autoCorrect="on"
                 className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"
                 style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
               <textarea name="message" value={formData.message} onChange={handleChange}
-                placeholder={tr.messageField} rows={6} required
+                placeholder={tr.messageField} rows={6} required spellCheck autoCorrect="on"
                 className="w-full rounded-lg px-5 py-4 border focus:outline-none resize-none focus:border-[#3B82F6] transition-colors"
                 style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
               <Button variant="primary" size="md" type="submit" disabled={isSubmitting}>
