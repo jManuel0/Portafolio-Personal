@@ -70,8 +70,8 @@ export default function Contact() {
                 {tr.success}
               </div>
             )}
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+            <form onSubmit={handleSubmit} className="space-y-5 w-full min-w-0 overflow-hidden">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full min-w-0">
                 <input type="text" name="firstName" value={formData.firstName} onChange={handleChange}
                   placeholder={tr.firstName} required
                   className="w-full min-w-0 rounded-lg px-5 py-4 border focus:outline-none focus:border-[#3B82F6] transition-colors"

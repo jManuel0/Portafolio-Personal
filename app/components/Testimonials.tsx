@@ -89,8 +89,8 @@ export default function Testimonials() {
           <div className="rounded-xl p-6 sm:p-8 border w-full min-w-0" style={{ backgroundColor: "var(--bg-card)", borderColor: "var(--border)" }}>
             <h3 className="text-xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>{tr.formTitle}</h3>
             <p className="text-sm mb-6 sm:mb-8" style={{ color: "var(--text-secondary)" }}>{tr.formDesc}</p>
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <form onSubmit={handleSubmit} className="space-y-5 w-full min-w-0 overflow-hidden">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 w-full min-w-0">
                 <div>
                   <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.name}</label>
                   <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
