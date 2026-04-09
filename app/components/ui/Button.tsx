@@ -23,7 +23,7 @@ export function Button({
 
   const variants = {
     primary: "bg-[#3B82F6] hover:bg-[#2563EB] text-white shadow-lg shadow-[#3B82F6]/30",
-    outline: "border-2 border-[#3B82F6] text-[#F8FAFC] hover:bg-[#3B82F6] hover:text-white",
+    outline: "border-2 border-[#3B82F6] hover:bg-[#3B82F6] hover:text-white",
   };
 
   const sizes = {
@@ -38,6 +38,7 @@ export function Button({
       onClick={onClick}
       disabled={disabled}
       className={`${base} ${variants[variant]} ${sizes[size]} ${className}`}
+      style={variant === "outline" ? { color: "var(--text-primary)" } : undefined}
     >
       {children}
     </button>
