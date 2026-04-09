@@ -9,7 +9,7 @@ const HEADERS = {
 // GET — returns only approved testimonials
 export async function GET() {
   const res = await fetch(
-    `${BASE_URL}?filterByFormula={approved}=1&sort[0][field]=name&sort[0][direction]=asc`,
+    `${BASE_URL}?filterByFormula={Checkbox}=1&sort[0][field]=name&sort[0][direction]=asc`,
     { headers: HEADERS, cache: "no-store" }
   );
   if (!res.ok) return NextResponse.json({ error: "Error fetching" }, { status: 500 });
@@ -32,9 +32,12 @@ export async function POST(req: NextRequest) {
     method: "POST",
     headers: HEADERS,
     body: JSON.stringify({
-      records: [{ fields: { name, position, content, rating: Number(rating) || 5, approved: false } }],
+      records: [{ fields: { name, position, content, rating: Number(rating) || 5, Checkbox: false } }],
     }),
   });
-  if (!res.ok) return NextResponse.json({ error: "Error saving" }, { status: 500 });
+  if (!res.ok) {
+    const err = await res.json();
+    return NextResponse.json({ error: "Error saving", detail: err }, { status: 500 });
+  }
   return NextResponse.json({ success: true });
 }
