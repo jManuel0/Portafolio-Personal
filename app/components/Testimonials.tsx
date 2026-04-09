@@ -86,7 +86,7 @@ export default function Testimonials() {
 
         {/* Form */}
         <div className="max-w-2xl mx-auto">
-          <div className="rounded-xl p-6 sm:p-8 border" style={{ backgroundColor: "var(--bg-card)", borderColor: "var(--border)" }}>
+          <div className="rounded-xl p-6 sm:p-8 border w-full min-w-0" style={{ backgroundColor: "var(--bg-card)", borderColor: "var(--border)" }}>
             <h3 className="text-xl font-bold mb-1" style={{ color: "var(--text-primary)" }}>{tr.formTitle}</h3>
             <p className="text-sm mb-6 sm:mb-8" style={{ color: "var(--text-secondary)" }}>{tr.formDesc}</p>
             <form onSubmit={handleSubmit} className="space-y-5">
@@ -95,15 +95,15 @@ export default function Testimonials() {
                   <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.name}</label>
                   <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                     placeholder={tr.name} required
-                    className="w-full rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                    style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
+                    className="w-full min-w-0 rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
+                    style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
                 </div>
                 <div>
                   <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.role}</label>
                   <input type="text" value={form.position} onChange={e => setForm({ ...form, position: e.target.value })}
                     placeholder={tr.rolePlaceholder}
-                    className="w-full rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                    style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)" }} />
+                    className="w-full min-w-0 rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
+                    style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
                 </div>
               </div>
               <div>
