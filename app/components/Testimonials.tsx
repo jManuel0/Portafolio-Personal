@@ -40,7 +40,12 @@ export default function Testimonials() {
       const res = await fetch("/api/testimonials", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(form),
+        body: JSON.stringify({
+          name: form.name.trim(),
+          position: form.position.trim(),
+          content: form.content.trim(),
+          rating: form.rating,
+        }),
       });
       if (!res.ok) throw new Error();
       setSubmitted(true);
@@ -96,7 +101,7 @@ export default function Testimonials() {
                   <input type="text" value={form.name} onChange={e => setForm({ ...form, name: e.target.value })}
                     placeholder={tr.name} required
                     className="w-full min-w-0 rounded-lg px-4 py-3 text-sm border focus:outline-none focus:border-[#3B82F6] transition-colors"
-                    style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden" }} />
+                    style={{ backgroundColor: "var(--input-bg)", borderColor: "var(--border)", color: "var(--text-primary)", overflow: "hidden", textOverflow: "ellipsis" }} />
                 </div>
                 <div>
                   <label className="block text-xs uppercase tracking-wider mb-2" style={{ color: "var(--text-secondary)" }}>{tr.role}</label>
