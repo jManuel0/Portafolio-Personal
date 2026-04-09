@@ -49,7 +49,7 @@ export default function Navbar() {
   const isLight = theme === "light";
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300"
+    <nav className="fixed top-0 left-0 right-0 z-50 border-b transition-colors duration-300 overflow-hidden"
       style={{ backgroundColor: "var(--nav-bg)", borderColor: "var(--border)", backdropFilter: "blur(8px)" }}>
       <ScrollBar />
       <div className="px-4 sm:px-8 py-4 sm:py-5">
