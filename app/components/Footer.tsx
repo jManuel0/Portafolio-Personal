@@ -35,7 +35,7 @@ export default function Footer() {
           <div className="text-center sm:text-left">
             <h4 className="text-sm font-bold uppercase tracking-wider mb-5" style={{ color: "var(--text-primary)" }}>{tr.quickLinks}</h4>
             <ul className="space-y-3">
-              {[["#home", nav.home], ["#about", nav.about], ["#projects", nav.projects], ["#experience", nav.experience], ["#contact", nav.contact]].map(([href, label]) => (
+              {[["#home", nav.home], ["#about", nav.about], ["#projects", nav.projects], ["#experience", nav.experience], ["#testimonials", nav.testimonials], ["#contact", nav.contact]].map(([href, label]) => (
                 <li key={href}><a href={href} className="text-sm hover:text-[#3B82F6] transition-colors" style={{ color: "var(--text-secondary)" }}>{label}</a></li>
               ))}
             </ul>
