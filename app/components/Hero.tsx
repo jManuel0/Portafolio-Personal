@@ -1,5 +1,6 @@
 "use client";
 import { Github, Linkedin, Download, Mail } from "lucide-react";
+import Image from "next/image";
 import { Button } from "./ui/Button";
 import { useApp } from "../context/AppContext";
 import { t } from "../i18n/translations";
@@ -30,7 +31,16 @@ export default function Hero() {
           <div className="flex items-center justify-center order-1 lg:order-2 w-full">
             <div className="rounded-full border-4 border-[#3B82F6] shadow-2xl shadow-[#3B82F6]/20 flex items-center justify-center flex-shrink-0"
               style={{ width: "min(260px, 70vw)", height: "min(260px, 70vw)", background: "linear-gradient(135deg, #1E3A8A 0%, #0F172A 100%)" }}>
-              <span className="font-bold select-none text-[#3B82F6]" style={{ fontSize: "min(90px, 24vw)", lineHeight: 1 }}>JO</span>
+              <div className="relative w-full h-full rounded-full overflow-hidden">
+                <Image
+                  src="/avatar1.png"
+                  alt="Avatar"
+                  fill
+                  sizes="(max-width: 1024px) 70vw, 260px"
+                  style={{ objectFit: "cover", objectPosition: "center" }}
+                  priority
+                />
+              </div>
             </div>
           </div>
 
