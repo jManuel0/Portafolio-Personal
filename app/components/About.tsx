@@ -32,8 +32,8 @@ export default function About() {
             <div className="relative">
               <div className="border-4 border-[#3B82F6] rounded-lg overflow-hidden shadow-2xl shadow-[#3B82F6]/20"
                 style={{ position: "relative", width: "min(480px, 90vw)", height: "min(520px, 97vw)", background: "linear-gradient(135deg, #1E3A8A, #0F172A)" }}>
-                <Image src="/avatar1.png" alt="Sobre mí" fill
-                  style={{ objectFit: "contain", objectPosition: "center" }} />
+                <Image src="/portafolio2.jpg" alt="Sobre mí" fill
+                  style={{ objectFit: "cover", objectPosition: "center top" }} />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0F172A] via-transparent to-transparent opacity-40" />
               </div>
               <div className="absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-16 sm:w-24 h-16 sm:h-24 border-4 border-[#3B82F6]/30 rounded-lg -z-10" />
