@@ -3,7 +3,7 @@ import { Github, Linkedin, Instagram } from "lucide-react";
 
 const socials = [
   { icon: <Github size={20} />, href: "https://github.com/jManuel0", label: "GitHub" },
-  { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", label: "LinkedIn" },
+  { icon: <Linkedin size={20} />, href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-aa58b1325", label: "LinkedIn" },
   { icon: <Instagram size={20} />, href: "#", label: "Instagram" },
 ];
 

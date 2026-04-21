@@ -7,7 +7,7 @@ import { t } from "../i18n/translations";
 
 const socials = [
   { href: "https://github.com/jManuel0", icon: <Github size={22} />, label: "GitHub" },
-  { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-781577337", icon: <Linkedin size={22} />, label: "LinkedIn" },
+  { href: "https://www.linkedin.com/in/juan-manuel-ordoñez-armero-aa58b1325", icon: <Linkedin size={22} />, label: "LinkedIn" },
 ];
 
 export default function Hero() {
